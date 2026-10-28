@@ -1,0 +1,123 @@
+
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>VEXORA</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 24px 16px;
+      font-family: Arial, sans-serif;
+      background: #0b0b14;
+      color: white;
+    }
+    header {
+      text-align: center;
+      color: #a78bfa;
+      font-size: 32px;
+      font-weight: 800;
+      padding: 20px;
+      letter-spacing: 3px;
+    }
+    .balance {
+      background: #19182b;
+      border: 1px solid #493778;
+      border-radius: 18px;
+      padding: 22px;
+      text-align: center;
+      margin: 12px 0 24px;
+    }
+    .amount { font-size: 30px; font-weight: bold; margin-top: 10px; }
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .card {
+      background: #191927;
+      border: 1px solid #303044;
+      border-radius: 18px;
+      padding: 22px 10px;
+      text-align: center;
+    }
+    .emoji { font-size: 34px; }
+    .card h3 { font-size: 17px; }
+    button {
+      width: 100%;
+      padding: 12px;
+      border: 0;
+      border-radius: 10px;
+      background: #8b5cf6;
+      color: white;
+      font-weight: bold;
+    }
+    #message { color: #c4b5fd; text-align: center; margin-top: 22px; }
+    footer { text-align: center; color: #777; margin-top: 30px; font-size: 12px; }
+  </style>
+</head>
+<body>
+  <header>VEXORA</header>
+
+  <section class="balance">
+    <div>⭐ DEMO BALANCE</div>
+    <div class="amount"><span id="balance">1000</span> pts</div>
+    <small>Sinov ballari — haqiqiy pul emas</small>
+  </section>
+
+  <main class="grid">
+    <section class="card">
+      <div class="emoji">🎁</div>
+      <h3>Cases</h3>
+      <button onclick="openCase()">Open</button>
+    </section>
+    <section class="card">
+      <div class="emoji">🚀</div>
+      <h3>Rocket</h3>
+      <button onclick="showMessage('Rocket demo tez orada!')">Play</button>
+    </section>
+    <section class="card">
+      <div class="emoji">⬆️</div>
+      <h3>Upgrade</h3>
+      <button onclick="showMessage('Upgrade demo tez orada!')">Start</button>
+    </section>
+    <section class="card">
+      <div class="emoji">👤</div>
+      <h3>Profile</h3>
+      <button onclick="showMessage('VEXORA profilingiz')">View</button>
+    </section>
+  </main>
+
+  <div id="message">VEXORA demo versiyasiga xush kelibsiz!</div>
+  <footer>VEXORA • DEMO VERSION</footer>
+
+  <script>
+    let balance = 1000;
+
+    if (window.Telegram && window.Telegram.WebApp) {
+      window.Telegram.WebApp.ready();
+      window.Telegram.WebApp.expand();
+    }
+
+    function showMessage(text) {
+      document.getElementById('message').textContent = text;
+    }
+
+    function openCase() {
+      const cost = 100;
+      if (balance < cost) {
+        showMessage('Ballar yetarli emas!');
+        return;
+      }
+      balance -= cost;
+      document.getElementById('balance').textContent = balance;
+      const prizes = ['Oddiy item', 'Rare item', 'Epic item'];
+      const prize = prizes[Math.floor(Math.random() * prizes.length)];
+      showMessage('Demo case ochildi! Yutug‘ingiz: ' + prize);
+    }
+  </script>
+</body>
+  </html>
