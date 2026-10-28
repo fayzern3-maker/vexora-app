@@ -15,38 +15,36 @@ header{display:flex;justify-content:space-between;align-items:center}
 .logo span,.purple{color:#b17cff}
 .tag{font-size:10px;letter-spacing:2px;color:#aaa0bd;margin-top:5px}
 .profile-pill,.pill{background:#251735;border:1px solid #493061;border-radius:15px;padding:10px;font-size:11px;color:#dec7ff}
-h1{font-size:34px;line-height:1.15;margin:32px 0 10px}
+h1{font-size:32px;line-height:1.15;margin:30px 0 10px}
 .sub{font-size:13px;color:#aaa2ba;line-height:1.6}
 .balance{margin-top:22px;padding:22px;border:1px solid #5b3b82;border-radius:22px;background:linear-gradient(135deg,#2b1748,#11101d 80%)}
 .label{font-size:11px;color:#bcb0d0}
-.amount{font-size:34px;font-weight:bold;margin:10px 0}
+.amount{font-size:32px;font-weight:bold;margin:10px 0}
 .amount small{font-size:13px;color:#bcb0d0}
-.heading{font-size:19px;font-weight:bold;margin:30px 0 14px}
+.heading{font-size:19px;font-weight:bold;margin:28px 0 14px}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.card{background:#14111f;border:1px solid #2c233b;border-radius:19px;padding:14px;min-width:0}
-.art{height:100px;border-radius:14px;background:radial-gradient(ellipse,#593087,#211332 60%,#15101e);display:flex;align-items:center;justify-content:center;font-size:48px;margin-bottom:14px}
-.card h3{font-size:16px;margin:0 0 7px}
-.card p{font-size:12px;color:#aaa2ba;line-height:1.5;min-height:36px}
-.btn{width:100%;border:0;border-radius:12px;padding:13px 7px;color:white;background:linear-gradient(100deg,#8244e6,#b16bff);font-weight:bold;font-size:12px}
-.btn:active{transform:scale(.97)}
+.card{background:#14111f;border:1px solid #2c233b;border-radius:18px;padding:13px;min-width:0}
+.art{height:95px;border-radius:13px;background:radial-gradient(ellipse,#593087,#211332 60%,#15101e);display:flex;align-items:center;justify-content:center;font-size:45px;margin-bottom:12px}
+.card h3{font-size:15px;margin:0 0 7px}
+.card p{font-size:12px;color:#aaa2ba;line-height:1.5;min-height:34px}
+.btn{width:100%;border:0;border-radius:12px;padding:12px 6px;color:white;background:linear-gradient(100deg,#8244e6,#b16bff);font-weight:bold;font-size:12px}
 .secondary{background:#282035;border:1px solid #47315f}
 .wide{width:100%;margin-top:15px;background:#15111f;border:1px solid #30233e;color:white;border-radius:15px;padding:16px;text-align:left}
 .wide span{float:right;color:#bd94ff}
 #message{background:#171121;border:1px solid #342443;padding:14px;border-radius:14px;color:#dfc8ff;font-size:13px;line-height:1.6;text-align:center;margin-top:17px}
-#reveal{display:none;text-align:center;margin-top:14px;padding:20px;border-radius:18px;background:#21152e;border:1px solid #7647a2}
-#itemIcon{font-size:52px;display:block;margin:8px}
 .hidden{display:none!important}
 .stat{padding:14px;background:#1b1527;border:1px solid #30243f;border-radius:14px;overflow-wrap:anywhere}
 .stat strong{display:block;font-size:20px;margin-top:7px}
-nav{position:fixed;bottom:10px;left:50%;transform:translateX(-50%);width:min(420px,calc(100% - 24px));display:flex;justify-content:space-around;padding:8px;background:#171220f5;border:1px solid #352641;border-radius:18px;z-index:5}
-nav button{flex:1;border:0;background:transparent;color:#aaa1bb;border-radius:12px;padding:8px 1px;font-size:10px}
+nav{position:fixed;bottom:10px;left:50%;transform:translateX(-50%);width:min(440px,calc(100% - 20px));display:flex;justify-content:space-around;padding:7px 3px;background:#171220f5;border:1px solid #352641;border-radius:17px;z-index:5}
+nav button{flex:1;border:0;background:transparent;color:#aaa1bb;border-radius:11px;padding:8px 1px;font-size:9px}
 nav button.active{background:#38234f;color:#e2caff}
-nav button span{display:block;font-size:18px;margin-bottom:4px}
+nav button span{display:block;font-size:17px;margin-bottom:4px}
 footer{text-align:center;color:#6e657d;font-size:10px;margin-top:25px}
 @keyframes glow{0%,100%{transform:scale(1)}50%{transform:scale(1.1);filter:brightness(1.7)}}
-@keyframes rise{from{transform:translateY(15px);opacity:0}to{transform:translateY(0);opacity:1}}
+@keyframes rise{from{transform:translateY(12px);opacity:0}to{transform:translateY(0);opacity:1}}
 .opening{animation:glow .45s ease-in-out 3}
 .pop{animation:rise .35s ease-out}
+.empty{grid-column:1/-1;text-align:center;color:#aaa2ba;background:#14111f;border:1px dashed #493061;border-radius:16px;padding:25px 12px;line-height:1.7}
 </style>
 </head>
 <body>
@@ -73,12 +71,23 @@ footer{text-align:center;color:#6e657d;font-size:10px;margin-top:25px}
   </div>
   <div class="card">
    <div class="art">💎</div>
-   <h3>Crystal Case</h3><p>Kristall kolleksiyasini sinab ko‘r.</p>
+   <h3>Crystal Case</h3><p>Kristall kolleksiyasini kashf et.</p>
    <button class="btn secondary" onclick="openBox(200)">Ochish · 200 PTS</button>
   </div>
  </div>
- <div id="reveal"><div class="label">SENING DEMO BUYUMING</div><span id="itemIcon">💎</span><b id="itemName">Kristall</b><p class="sub">Faqat virtual demo buyum.</p></div>
  <button class="wide" onclick="daily()">🎁 Kunlik bonus <span>+50 PTS</span></button>
+</section>
+
+<section id="collection" class="hidden">
+ <h1>MY <span class="purple">COLLECTION</span> 🎒</h1>
+ <p class="sub">Sandiqlardan topgan virtual buyumlaring shu yerda saqlanadi.</p>
+ <div class="balance">
+  <div class="label">JAMI BUYUMLAR</div>
+  <div class="amount" id="collectionCount">0</div>
+  <span class="pill">✦ Shaxsiy demo kolleksiyang</span>
+ </div>
+ <div class="heading">✦ Mening buyumlarim</div>
+ <div class="grid" id="inventory"></div>
 </section>
 
 <section id="rocketPage" class="hidden">
@@ -104,10 +113,13 @@ footer{text-align:center;color:#6e657d;font-size:10px;margin-top:25px}
 
 <section id="profilePage" class="hidden">
  <h1>PLAYER <span class="purple">PROFILE</span></h1>
- <div class="balance" style="text-align:center"><div style="font-size:60px">👤</div><h2>VEXORA Player</h2><span class="pill">DEMO ACCOUNT</span></div>
+ <div class="balance" style="text-align:center">
+  <div style="font-size:60px">👤</div><h2>VEXORA Player</h2>
+  <span class="pill">DEMO ACCOUNT</span>
+ </div>
  <div class="grid" style="margin-top:14px">
   <div class="stat"><div class="label">BALANS</div><strong id="profileBalance">1000 PTS</strong></div>
-  <div class="stat"><div class="label">BUYUMLAR</div><strong id="itemsCount">0</strong></div>
+  <div class="stat"><div class="label">BUYUMLAR</div><strong id="profileItems">0</strong></div>
   <div class="stat"><div class="label">DARAJA</div><strong id="profileLevel">1</strong></div>
   <div class="stat"><div class="label">BONUS</div><strong id="bonusStatus">Tayyor</strong></div>
  </div>
@@ -120,51 +132,80 @@ footer{text-align:center;color:#6e657d;font-size:10px;margin-top:25px}
 
 <nav>
  <button class="active" onclick="showPage('home',this)"><span>⌂</span>Home</button>
- <button onclick="showPage('home',this)"><span>🎁</span>Cases</button>
+ <button onclick="showPage('collection',this)"><span>🎒</span>Items</button>
  <button onclick="showPage('rocketPage',this)"><span>🚀</span>Rocket</button>
  <button onclick="showPage('upgradePage',this)"><span>⚡</span>Upgrade</button>
  <button onclick="showPage('profilePage',this)"><span>👤</span>Profile</button>
 </nav>
 
 <script>
-let balance=1000,items=0,level=1,gotBonus=false,rocketBusy=false;
+let balance=1000,level=1,gotBonus=false,rocketBusy=false;
+let inventory=[];
 const itemList=[
  ['💎','Neon kristall'],['👑','Virtual toj'],['✨','Yulduzcha'],
- ['🛡️','Sirli qalqon'],['🔮','Binafsha orb'],['🌌','Kosmik belgi']
+ ['🛡️','Sirli qalqon'],['🔮','Binafsha orb'],['🌌','Kosmik belgi'],
+ ['🪐','Kosmik sayyora'],['💠','Sehrli kristall']
 ];
 
 function saveGame(){
  try{
-  localStorage.setItem('vexoraSave',JSON.stringify({balance,items,level,gotBonus}));
- }catch(e){}
+  localStorage.setItem('vexoraSave',JSON.stringify({
+   balance:balance,level:level,gotBonus:gotBonus,inventory:inventory
+  }));
+ }catch(e){say('Saqlash ishlamadi. Brauzer sozlamalarini tekshir.')}
 }
 function loadGame(){
  try{
-  const s=localStorage.getItem('vexoraSave');
-  if(!s)return;
-  const d=JSON.parse(s);
+  const raw=localStorage.getItem('vexoraSave');
+  if(!raw)return;
+  const d=JSON.parse(raw);
   if(Number.isFinite(d.balance)&&d.balance>=0)balance=d.balance;
-  if(Number.isFinite(d.items)&&d.items>=0)items=d.items;
   if(Number.isFinite(d.level)&&d.level>=1)level=d.level;
   if(typeof d.gotBonus==='boolean')gotBonus=d.gotBonus;
+  if(Array.isArray(d.inventory)){
+   inventory=d.inventory.filter(x=>
+    x&&typeof x.name==='string'&&typeof x.icon==='string'
+   );
+  }
  }catch(e){}
 }
 function say(t){document.getElementById('message').textContent=t}
 function update(){
  document.getElementById('balance').textContent=balance;
  document.getElementById('profileBalance').textContent=balance+' PTS';
- document.getElementById('itemsCount').textContent=items;
+ document.getElementById('profileItems').textContent=inventory.length;
  document.getElementById('profileLevel').textContent=level;
  document.getElementById('level').textContent=level;
  document.getElementById('bonusStatus').textContent=gotBonus?'Olingan':'Tayyor';
+ document.getElementById('collectionCount').textContent=inventory.length;
+ renderInventory();
  saveGame();
+}
+function renderInventory(){
+ const el=document.getElementById('inventory');
+ el.replaceChildren();
+ if(inventory.length===0){
+  const empty=document.createElement('div');
+  empty.className='empty';
+  empty.textContent='🎒 Kolleksiya hozircha bo‘sh. Sandiq ochib birinchi virtual buyumingni top!';
+  el.appendChild(empty);
+  return;
+ }
+ inventory.forEach(item=>{
+  const card=document.createElement('div');card.className='card pop';
+  const art=document.createElement('div');art.className='art';art.textContent=item.icon;
+  const title=document.createElement('h3');title.textContent=item.name;
+  const desc=document.createElement('p');desc.textContent='Virtual kolleksiyadagi buyum';
+  card.append(art,title,desc);el.appendChild(card);
+ });
 }
 function showPage(id,btn){
  document.querySelectorAll('section').forEach(s=>s.classList.add('hidden'));
  document.getElementById(id).classList.remove('hidden');
  document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
  btn.classList.add('active');
- if(id==='home')say('Virtual Cases bo‘limiga xush kelibsan!');
+ if(id==='home')say('Cases bo‘limiga xush kelibsan!');
+ else if(id==='collection')say('🎒 Kolleksiyangda '+inventory.length+' ta buyum bor.');
  else if(id==='rocketPage')say('Rocket demo sahifasiga xush kelibsan!');
  else if(id==='upgradePage')say('Virtual ochkolar bilan darajangni oshir.');
  else say('Profiling va statistikang shu yerda.');
@@ -174,16 +215,13 @@ function openBox(cost){
  balance-=cost;update();
  const art=document.getElementById('caseArt');
  art.classList.remove('opening');void art.offsetWidth;art.classList.add('opening');
- document.getElementById('reveal').style.display='none';
  say('Sandiq ochilmoqda...');
  setTimeout(()=>{
-  const item=itemList[Math.floor(Math.random()*itemList.length)];
-  items++;
-  document.getElementById('itemIcon').textContent=item[0];
-  document.getElementById('itemName').textContent=item[1];
-  const r=document.getElementById('reveal');
-  r.style.display='block';r.classList.remove('pop');void r.offsetWidth;r.classList.add('pop');
-  update();say('🎉 Demo buyum topildi: '+item[1]+'!');
+  const chosen=itemList[Math.floor(Math.random()*itemList.length)];
+  const item={id:Date.now().toString()+'-'+Math.random().toString(16).slice(2),icon:chosen[0],name:chosen[1]};
+  inventory.unshift(item);
+  update();
+  say('🎉 Topildi: '+item.name+'! Kolleksiyangga qo‘shildi.');
  },850);
 }
 function daily(){
@@ -213,5 +251,5 @@ loadGame();
 update();
 </script>
 </body>
-                         </html>
+    </html>
    
