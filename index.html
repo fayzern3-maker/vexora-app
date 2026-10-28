@@ -9,34 +9,56 @@
 <style>
 *{box-sizing:border-box}
 body{margin:0;background:#0b0918;color:#f6f3ff;font-family:system-ui,sans-serif}
-header,main{max-width:720px;margin:auto;padding:20px}
-header{font-size:26px;font-weight:900;letter-spacing:3px}
-header span{color:#9c78ff}
-main{padding-bottom:90px}
-h1{font-size:27px}
-h2{font-size:19px}
-p{line-height:1.5}
+header{max-width:720px;margin:auto;padding:15px 16px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.logo{font-size:23px;font-weight:900;letter-spacing:3px;white-space:nowrap}
+.logo span{color:#9c78ff}
+.top-actions{display:flex;align-items:center;gap:7px}
+.mini-balance{background:#17142a;border:1px solid #30294e;border-radius:12px;padding:8px 10px;min-width:95px}
+.mini-balance small{display:block;color:#aaa5c8;font-size:10px}
+.mini-balance strong{font-size:14px}
+button{font:inherit;cursor:pointer}
+.deposit-top{border:0;border-radius:12px;padding:11px 12px;background:#8c6bff;color:white;font-weight:750;font-size:13px}
+main{max-width:720px;margin:auto;padding:10px 16px 95px}
+h1{font-size:27px}h2{font-size:19px}p{line-height:1.5}
 .muted{color:#a5a0bd;font-size:13px}
 .panel{padding:18px;background:#17142a;border:1px solid #30294e;border-radius:19px;margin:16px 0}
 .row{display:flex;align-items:center;gap:13px}
 .ton-icon{width:52px;height:52px;border-radius:16px;background:#168fe0;display:grid;place-items:center;font-size:25px;font-weight:900}
 .balance{font-size:29px;font-weight:800;margin-top:22px;overflow-wrap:anywhere}
 .status{font-size:12px;color:#aaa5c8;margin-top:10px;overflow-wrap:anywhere}
-button{font:inherit;cursor:pointer}
 .primary{display:block;width:100%;margin-top:14px;border:0;border-radius:12px;padding:13px;background:#8c6bff;color:white;font-weight:750}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .tile{padding:17px;text-align:left;color:white;background:#17142a;border:1px solid #30294e;border-radius:16px}
 .tile strong{display:block;margin:8px 0}
 .notice{margin-top:15px;padding:13px;border-radius:12px;background:#201b34;color:#c4bfdc;font-size:12px;line-height:1.6}
 .page{display:none}.page.active{display:block}
-nav{position:fixed;bottom:0;left:0;right:0;display:flex;justify-content:center;background:#100e20;border-top:1px solid #30294e;padding:8px}
+nav{position:fixed;bottom:0;left:0;right:0;display:flex;justify-content:center;background:#100e20;border-top:1px solid #30294e;padding:8px;z-index:2}
 nav button{flex:1;max-width:160px;padding:11px 2px;border:0;border-radius:9px;background:none;color:#a5a0bd;font-size:12px}
 nav button.active{background:#2a2147;color:white}
-@media(max-width:380px){.grid{grid-template-columns:1fr}}
+.modal-backdrop{display:none;position:fixed;inset:0;background:#000a;z-index:5;align-items:flex-end;justify-content:center;padding:12px}
+.modal-backdrop.open{display:flex}
+.modal{width:100%;max-width:480px;background:#17142a;border:1px solid #393052;border-radius:22px;padding:20px;margin-bottom:10px}
+.modal-head{display:flex;justify-content:space-between;align-items:center}
+.close{border:0;border-radius:9px;padding:7px 11px;background:#30294e;color:white}
+.pay-option{width:100%;display:flex;align-items:center;gap:13px;text-align:left;margin-top:12px;padding:15px;background:#201b34;color:white;border:1px solid #393052;border-radius:14px}
+.pay-option .symbol{font-size:26px}
+.pay-option strong,.pay-option small{display:block}
+.pay-option small{color:#aaa5c8;font-size:12px;margin-top:3px}
+@media(max-width:380px){.logo{font-size:19px;letter-spacing:2px}.mini-balance{min-width:80px;padding:7px}.deposit-top{padding:10px 8px;font-size:12px}.grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
-<header>VE<span>X</span>ORA</header>
+<header>
+  <div class="logo">VE<span>X</span>ORA</div>
+  <div class="top-actions">
+    <div class="mini-balance">
+      <small>BOT BALANSI</small>
+      <strong id="bot-balance">Tekshirilmagan</strong>
+    </div>
+    <button class="deposit-top" id="open-deposit">＋ Depozit</button>
+  </div>
+</header>
+
 <main>
 <section class="page active" id="home">
 <h1>Raqamli aktivlaring</h1>
@@ -58,33 +80,27 @@ nav button.active{background:#2a2147;color:white}
 
 <div class="grid">
  <button class="tile" onclick="showPage('gifts')">
-  <span style="font-size:28px">🎁</span>
-  <strong>Telegram Gifts</strong>
+  <span style="font-size:28px">🎁</span><strong>Telegram Gifts</strong>
   <span class="muted">Sovg‘alar kolleksiyasi</span>
  </button>
  <button class="tile" onclick="showPage('nfts')">
-  <span style="font-size:28px">🖼️</span>
-  <strong>NFT Collection</strong>
+  <span style="font-size:28px">🖼️</span><strong>NFT Collection</strong>
   <span class="muted">Raqamli kolleksiya</span>
  </button>
 </div>
-<div class="notice">Haqiqiy balans blokcheyn manbasidan olinadi. Gift va NFT egaligi hali tekshirilmagan bo‘lsa, ular mavjud deb ko‘rsatilmaydi. Seed phrase yoki maxfiy kalitni hech qachon kiritmang.</div>
+<div class="notice">Bot balansi va TON hamyon balansi alohida hisoblanadi. Bot balansi backend ulanmaguncha mavjud emas. Seed phrase yoki maxfiy kalitni hech qachon kiritmang.</div>
 </section>
 
 <section class="page" id="gifts">
 <h1>Telegram Gifts</h1>
-<div class="panel">
- <h2>Mening sovg‘alarim</h2>
- <p class="muted">Sovg‘alarni aniqlash integratsiyasi hali ulanmagan. Tasdiqlangan ma’lumot bo‘lmagani uchun ro‘yxat bo‘sh.</p>
-</div>
+<div class="panel"><h2>Mening sovg‘alarim</h2>
+<p class="muted">Sovg‘alarni aniqlash integratsiyasi hali ulanmagan.</p></div>
 </section>
 
 <section class="page" id="nfts">
 <h1>NFT Collection</h1>
-<div class="panel">
- <h2>Mening NFT’larim</h2>
- <p class="muted">NFT egaligini tekshirish manbasi hali ulanmagan. Bu yerda soxta NFT ko‘rsatilmaydi.</p>
-</div>
+<div class="panel"><h2>Mening NFT’larim</h2>
+<p class="muted">NFT egaligini tekshirish manbasi hali ulanmagan.</p></div>
 </section>
 </main>
 
@@ -94,13 +110,50 @@ nav button.active{background:#2a2147;color:white}
  <button data-page="nfts" onclick="showPage('nfts')">▧ NFTs</button>
 </nav>
 
+<div class="modal-backdrop" id="deposit-modal" role="dialog" aria-modal="true" aria-labelledby="deposit-title">
+ <div class="modal">
+  <div class="modal-head">
+   <h2 id="deposit-title" style="margin:0">Balansni to‘ldirish</h2>
+   <button class="close" id="close-deposit">✕</button>
+  </div>
+  <p class="muted">To‘lov usulini tanlang.</p>
+  <button class="pay-option" id="choose-ton">
+   <span class="symbol">💎</span>
+   <span><strong>TON orqali</strong><small>TON hamyoniga to‘lov</small></span>
+  </button>
+  <button class="pay-option" id="choose-stars">
+   <span class="symbol">⭐</span>
+   <span><strong>Telegram Stars</strong><small>Telegram bot orqali to‘lov</small></span>
+  </button>
+  <div class="notice" id="payment-message">To‘lovlar backend orqali tasdiqlanadi. Tasdiqlanmagan to‘lov bot balansiga qo‘shilmaydi.</div>
+ </div>
+</div>
+
 <script>
 function showPage(id){
  document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id===id));
  document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===id));
 }
-
 const $=id=>document.getElementById(id);
+
+$('open-deposit').onclick=()=> $('deposit-modal').classList.add('open');
+$('close-deposit').onclick=()=> $('deposit-modal').classList.remove('open');
+$('deposit-modal').addEventListener('click',e=>{
+ if(e.target===$('deposit-modal')) $('deposit-modal').classList.remove('open');
+});
+
+const depositAddress='UQBGBtNxXKb929DYB2mP6x4WoiD6ThYxcO_7IT7EJdaIsiXF';
+
+$('choose-ton').onclick=()=>{
+ $('payment-message').textContent='TON qabul qiluvchi manzil: '+depositAddress+'. Hamyon ilovasida manzilni tekshirib, to‘lovni o‘zing tasdiqla. Bot balansi server tranzaksiyani tekshirgandan keyingina yangilanadi.';
+ const url='https://app.tonkeeper.com/transfer/'+depositAddress;
+ window.open(url,'_blank','noopener');
+};
+
+$('choose-stars').onclick=()=>{
+ $('payment-message').textContent='Stars to‘lovi uchun bot backendida Telegram XTR invoice yaratilishi kerak. Backend ulanmagani sababli bu tugma hozircha to‘lov olmaydi.';
+};
+
 let address=null,requesting=false;
 
 async function fetchBalance(){
@@ -109,15 +162,12 @@ async function fetchBalance(){
  $('refresh').disabled=true;
  $('balance').textContent='Yuklanmoqda…';
  $('balance-status').textContent='TON Mainnet balansi tekshirilmoqda.';
-
  try{
   const r=await fetch('https://toncenter.com/api/v2/getAddressBalance?address='+encodeURIComponent(address));
   if(!r.ok)throw Error('HTTP '+r.status);
   const d=await r.json();
   if(d.ok!==true||d.result==null)throw Error('Balans olinmadi');
-
-  const n=BigInt(d.result);
-  const whole=n/1000000000n;
+  const n=BigInt(d.result),whole=n/1000000000n;
   const frac=(n%1000000000n).toString().padStart(9,'0');
   const amount=(whole.toString()+'.'+frac).replace(/\.?0+$/,'');
   $('balance').textContent=amount+' TON';
@@ -145,9 +195,7 @@ function initTonConnect(){
    const ui=new window.TON_CONNECT_UI.TonConnectUI({
     manifestUrl:'https://fayzern3-maker.github.io/vexora-app/tonconnect-manifest.json',
     buttonRootId:'ton-connect',
-    actionsConfiguration:{
-     twaReturnUrl:'https://t.me/'
-    }
+    actionsConfiguration:{twaReturnUrl:'https://t.me/'}
    });
    ui.onStatusChange(wallet=>{
     if(wallet&&wallet.account&&wallet.account.address){
@@ -165,15 +213,13 @@ function initTonConnect(){
      $('refresh').disabled=true;
     }
    });
-  }catch(e){
-   $('wallet-status').textContent='TON Connect sozlamalarini tekshiring.';
-  }
+  }catch(e){$('wallet-status').textContent='TON Connect sozlamalarini tekshiring.';}
  };
- s.onerror=()=>$('wallet-status').textContent='TON Connect yuklanmadi. Internetni tekshiring.';
+ s.onerror=()=> $('wallet-status').textContent='TON Connect yuklanmadi. Internetni tekshiring.';
  document.head.appendChild(s);
 }
 initTonConnect();
 </script>
 </body>
-                                        </html>
-  
+                                 </html>
+ 
