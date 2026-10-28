@@ -3,53 +3,50 @@
 <html lang="uz">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#090711">
 <title>VEXORA</title>
 <style>
 *{box-sizing:border-box}
-body{margin:0;background:#090711;color:#fff;font-family:Arial,sans-serif;padding:20px 15px 95px}
+body{margin:0;background:#090711;color:white;font-family:Arial,sans-serif;padding:20px 15px 100px}
 .app{max-width:440px;margin:auto}
 header{display:flex;justify-content:space-between;align-items:center}
 .logo{font-size:27px;font-weight:900;letter-spacing:3px}
 .logo span,.purple{color:#b17cff}
 .tag{font-size:10px;letter-spacing:2px;color:#aaa0bd;margin-top:5px}
-.profile-pill{background:#1b1429;border:1px solid #38264f;border-radius:12px;padding:10px;font-size:12px}
-h1{font-size:34px;line-height:1.12;margin:32px 0 9px}
+.profile-pill,.pill{background:#251735;border:1px solid #493061;border-radius:15px;padding:10px;font-size:11px;color:#dec7ff}
+h1{font-size:34px;line-height:1.15;margin:32px 0 10px}
 .sub{font-size:13px;color:#aaa2ba;line-height:1.6}
-.balance{margin-top:22px;padding:22px;border:1px solid #5b3b82;border-radius:22px;background:linear-gradient(135deg,#2b1748,#11101d 80%);box-shadow:0 12px 40px #7a39c51a}
+.balance{margin-top:22px;padding:22px;border:1px solid #5b3b82;border-radius:22px;background:linear-gradient(135deg,#2b1748,#11101d 80%)}
 .label{font-size:11px;color:#bcb0d0}
 .amount{font-size:34px;font-weight:bold;margin:10px 0}
 .amount small{font-size:13px;color:#bcb0d0}
-.pill{font-size:11px;background:#38234d;color:#dfc9ff;padding:7px 10px;border-radius:20px;display:inline-block}
 .heading{font-size:19px;font-weight:bold;margin:30px 0 14px}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.card{background:#14111f;border:1px solid #2c233b;border-radius:19px;padding:16px 13px;min-width:0}
-.case-art{height:110px;border-radius:14px;background:radial-gradient(ellipse at center,#4c2877 0%,#211332 48%,#15101e 78%);display:flex;align-items:center;justify-content:center;font-size:54px;margin-bottom:14px;position:relative;overflow:hidden}
-.case-art:after{content:"";position:absolute;width:80px;height:80px;border:1px solid #b77cff44;border-radius:50%}
+.card{background:#14111f;border:1px solid #2c233b;border-radius:19px;padding:14px;min-width:0}
+.art{height:100px;border-radius:14px;background:radial-gradient(ellipse,#593087,#211332 60%,#15101e);display:flex;align-items:center;justify-content:center;font-size:48px;margin-bottom:14px}
 .card h3{font-size:16px;margin:0 0 7px}
-.card p{font-size:12px;color:#a9a1b8;line-height:1.5;margin:0 0 13px}
-.btn{width:100%;border:0;border-radius:12px;padding:12px 8px;color:#fff;background:linear-gradient(100deg,#8244e6,#b16bff);font-size:12px;font-weight:bold}
+.card p{font-size:12px;color:#aaa2ba;line-height:1.5;min-height:36px}
+.btn{width:100%;border:0;border-radius:12px;padding:13px 7px;color:white;background:linear-gradient(100deg,#8244e6,#b16bff);font-weight:bold;font-size:12px}
 .btn:active{transform:scale(.97)}
 .secondary{background:#282035;border:1px solid #47315f}
-.wide{width:100%;margin-top:15px;background:#15111f;border:1px solid #30233e;color:#fff;border-radius:15px;padding:16px;text-align:left;font-size:14px}
+.wide{width:100%;margin-top:15px;background:#15111f;border:1px solid #30233e;color:white;border-radius:15px;padding:16px;text-align:left}
 .wide span{float:right;color:#bd94ff}
-#message{background:#171121;border:1px solid #342443;padding:14px;border-radius:14px;color:#dfc8ff;font-size:13px;line-height:1.6;text-align:center;margin-top:17px;min-height:47px}
+#message{background:#171121;border:1px solid #342443;padding:14px;border-radius:14px;color:#dfc8ff;font-size:13px;line-height:1.6;text-align:center;margin-top:17px}
 #reveal{display:none;text-align:center;margin-top:14px;padding:20px;border-radius:18px;background:#21152e;border:1px solid #7647a2}
 #itemIcon{font-size:52px;display:block;margin:8px}
-#itemName{font-weight:bold}
-nav{position:fixed;bottom:10px;left:50%;transform:translateX(-50%);width:min(420px,calc(100% - 24px));display:flex;justify-content:space-around;gap:4px;padding:8px;background:#171220ed;backdrop-filter:blur(14px);border:1px solid #352641;border-radius:18px;z-index:5}
-nav button{flex:1;border:0;background:transparent;color:#a9a1bb;border-radius:12px;padding:9px 2px;font-size:10px}
-nav button.active{background:#38234f;color:#e2caff}
-nav button span{display:block;font-size:19px;margin-bottom:4px}
-footer{text-align:center;color:#6e657d;font-size:10px;margin-top:25px}
 .hidden{display:none!important}
-@keyframes glow{0%,100%{transform:scale(1);filter:brightness(1)}50%{transform:scale(1.08);filter:brightness(1.5)}}
-@keyframes rise{0%{transform:translateY(15px) scale(.7);opacity:0}100%{transform:translateY(0) scale(1);opacity:1}}
-.opening{animation:glow .5s ease-in-out 3}
+.stat{padding:14px;background:#1b1527;border:1px solid #30243f;border-radius:14px;overflow-wrap:anywhere}
+.stat strong{display:block;font-size:20px;margin-top:7px}
+nav{position:fixed;bottom:10px;left:50%;transform:translateX(-50%);width:min(420px,calc(100% - 24px));display:flex;justify-content:space-around;padding:8px;background:#171220f5;border:1px solid #352641;border-radius:18px;z-index:5}
+nav button{flex:1;border:0;background:transparent;color:#aaa1bb;border-radius:12px;padding:8px 1px;font-size:10px}
+nav button.active{background:#38234f;color:#e2caff}
+nav button span{display:block;font-size:18px;margin-bottom:4px}
+footer{text-align:center;color:#6e657d;font-size:10px;margin-top:25px}
+@keyframes glow{0%,100%{transform:scale(1)}50%{transform:scale(1.1);filter:brightness(1.7)}}
+@keyframes rise{from{transform:translateY(15px);opacity:0}to{transform:translateY(0);opacity:1}}
+.opening{animation:glow .45s ease-in-out 3}
 .pop{animation:rise .35s ease-out}
-.stat{padding:14px;background:#1b1527;border:1px solid #30243f;border-radius:14px}
-.stat strong{display:block;font-size:22px;margin-top:7px}
 </style>
 </head>
 <body>
@@ -63,55 +60,51 @@ footer{text-align:center;color:#6e657d;font-size:10px;margin-top:25px}
  <h1>Enter the<br><span class="purple">VEXORA world.</span></h1>
  <div class="sub">O‘yna, kashf et va virtual kolleksiyangni yarat.</div>
  <div class="balance">
-  <div class="label">SENING DEMO BALANSING</div>
+  <div class="label">DEMO BALANSING</div>
   <div class="amount"><b id="balance">1000</b> <small>PTS</small></div>
   <span class="pill">✦ Virtual ochkolar</span>
  </div>
  <div class="heading">✦ Virtual Cases</div>
  <div class="grid">
   <div class="card">
-   <div class="case-art" id="caseArt">🎁</div>
+   <div class="art" id="caseArt">🎁</div>
    <h3>Violet Case</h3><p>Sirli virtual buyumni kashf et.</p>
-   <button class="btn" onclick="openCase()">Ochish · 100 PTS</button>
+   <button class="btn" onclick="openBox(100)">Ochish · 100 PTS</button>
   </div>
   <div class="card">
-   <div class="case-art">💎</div>
-   <h3>Crystal Case</h3><p>Kristall kolleksiyasi demo sandig‘i.</p>
-   <button class="btn secondary" onclick="openCrystal()">Ochish · 200 PTS</button>
+   <div class="art">💎</div>
+   <h3>Crystal Case</h3><p>Kristall kolleksiyasini sinab ko‘r.</p>
+   <button class="btn secondary" onclick="openBox(200)">Ochish · 200 PTS</button>
   </div>
  </div>
- <div id="reveal"><div class="label">SENING DEMO BUYUMING</div><span id="itemIcon">💎</span><div id="itemName">Neon kristall</div><p class="sub">Bu buyum faqat virtual demoda mavjud.</p></div>
+ <div id="reveal"><div class="label">SENING DEMO BUYUMING</div><span id="itemIcon">💎</span><b id="itemName">Kristall</b><p class="sub">Faqat virtual demo buyum.</p></div>
  <button class="wide" onclick="daily()">🎁 Kunlik bonus <span>+50 PTS</span></button>
 </section>
 
 <section id="rocketPage" class="hidden">
  <h1>ROCKET <span class="purple">🚀</span></h1>
- <p class="sub">Virtual raketa animatsiyasi. Pul tikish mavjud emas.</p>
+ <p class="sub">Virtual raketa mini-o‘yini.</p>
  <div class="balance" style="text-align:center">
-  <div id="rocketArt" style="font-size:75px;padding:24px">🚀</div>
+  <div id="rocketArt" style="font-size:80px;padding:25px">🚀</div>
   <div class="amount" id="rocketStatus">Tayyor!</div>
-  <p class="sub">Shunchaki demo animatsiyani ishga tushir.</p>
   <button class="btn" id="rocketBtn" onclick="launchRocket()">Raketani uchirish</button>
  </div>
 </section>
 
 <section id="upgradePage" class="hidden">
  <h1>UP<span class="purple">GRADE</span> ⚡</h1>
- <p class="sub">Virtual kolleksiya darajangni oshir.</p>
+ <p class="sub">Virtual darajangni oshir.</p>
  <div class="balance">
   <div class="label">SENING DARAJANG</div>
   <div class="amount">LVL <b id="level">1</b></div>
-  <div class="pill">Har bir upgrade: 150 PTS</div>
+  <span class="pill">Upgrade: 150 PTS</span>
   <button class="btn" style="margin-top:20px" onclick="upgrade()">Darajani oshirish</button>
  </div>
 </section>
 
 <section id="profilePage" class="hidden">
  <h1>PLAYER <span class="purple">PROFILE</span></h1>
- <div class="balance" style="text-align:center">
-  <div style="font-size:60px">👤</div><h2>VEXORA Player</h2>
-  <span class="pill">DEMO ACCOUNT</span>
- </div>
+ <div class="balance" style="text-align:center"><div style="font-size:60px">👤</div><h2>VEXORA Player</h2><span class="pill">DEMO ACCOUNT</span></div>
  <div class="grid" style="margin-top:14px">
   <div class="stat"><div class="label">BALANS</div><strong id="profileBalance">1000 PTS</strong></div>
   <div class="stat"><div class="label">BUYUMLAR</div><strong id="itemsCount">0</strong></div>
@@ -135,9 +128,27 @@ footer{text-align:center;color:#6e657d;font-size:10px;margin-top:25px}
 
 <script>
 let balance=1000,items=0,level=1,gotBonus=false,rocketBusy=false;
-const itemsList=[
- ['💎','Neon kristall'],['👑','Virtual toj'],['✨','Yulduzcha'],['🛡️','Sirli qalqon'],['🔮','Binafsha orb'],['🌌','Kosmik belgi']
+const itemList=[
+ ['💎','Neon kristall'],['👑','Virtual toj'],['✨','Yulduzcha'],
+ ['🛡️','Sirli qalqon'],['🔮','Binafsha orb'],['🌌','Kosmik belgi']
 ];
+
+function saveGame(){
+ try{
+  localStorage.setItem('vexoraSave',JSON.stringify({balance,items,level,gotBonus}));
+ }catch(e){}
+}
+function loadGame(){
+ try{
+  const s=localStorage.getItem('vexoraSave');
+  if(!s)return;
+  const d=JSON.parse(s);
+  if(Number.isFinite(d.balance)&&d.balance>=0)balance=d.balance;
+  if(Number.isFinite(d.items)&&d.items>=0)items=d.items;
+  if(Number.isFinite(d.level)&&d.level>=1)level=d.level;
+  if(typeof d.gotBonus==='boolean')gotBonus=d.gotBonus;
+ }catch(e){}
+}
 function say(t){document.getElementById('message').textContent=t}
 function update(){
  document.getElementById('balance').textContent=balance;
@@ -146,43 +157,42 @@ function update(){
  document.getElementById('profileLevel').textContent=level;
  document.getElementById('level').textContent=level;
  document.getElementById('bonusStatus').textContent=gotBonus?'Olingan':'Tayyor';
+ saveGame();
 }
 function showPage(id,btn){
  document.querySelectorAll('section').forEach(s=>s.classList.add('hidden'));
  document.getElementById(id).classList.remove('hidden');
  document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
  btn.classList.add('active');
- if(id==='home')say('Cases bo‘limida virtual buyumlarni kashf et!');
+ if(id==='home')say('Virtual Cases bo‘limiga xush kelibsan!');
  else if(id==='rocketPage')say('Rocket demo sahifasiga xush kelibsan!');
- else if(id==='upgradePage')say('Virtual ochkolaring bilan darajangni oshir.');
+ else if(id==='upgradePage')say('Virtual ochkolar bilan darajangni oshir.');
  else say('Profiling va statistikang shu yerda.');
 }
 function openBox(cost){
- if(balance<cost){say('Ochko yetarli emas. Kunlik bonusni olishing mumkin.');return}
+ if(balance<cost){say('Ochko yetarli emas. Kunlik bonusni tekshir.');return}
  balance-=cost;update();
  const art=document.getElementById('caseArt');
  art.classList.remove('opening');void art.offsetWidth;art.classList.add('opening');
- say('Sandiq ochilmoqda...');
  document.getElementById('reveal').style.display='none';
+ say('Sandiq ochilmoqda...');
  setTimeout(()=>{
-  const item=itemsList[Math.floor(Math.random()*itemsList.length)];
+  const item=itemList[Math.floor(Math.random()*itemList.length)];
   items++;
   document.getElementById('itemIcon').textContent=item[0];
   document.getElementById('itemName').textContent=item[1];
-  const box=document.getElementById('reveal');
-  box.style.display='block';box.classList.remove('pop');void box.offsetWidth;box.classList.add('pop');
+  const r=document.getElementById('reveal');
+  r.style.display='block';r.classList.remove('pop');void r.offsetWidth;r.classList.add('pop');
   update();say('🎉 Demo buyum topildi: '+item[1]+'!');
  },850);
 }
-function openCase(){openBox(100)}
-function openCrystal(){openBox(200)}
 function daily(){
  if(gotBonus){say('Kunlik bonus allaqachon olingan!');return}
  gotBonus=true;balance+=50;update();say('🎁 +50 virtual PTS olindi!');
 }
 function upgrade(){
  if(balance<150){say('Upgrade uchun 150 PTS kerak.');return}
- balance-=150;level++;update();say('⚡ Ajoyib! Yangi virtual daraja: '+level);
+ balance-=150;level++;update();say('⚡ Yangi virtual daraja: '+level+'!');
 }
 function launchRocket(){
  if(rocketBusy)return;
@@ -191,13 +201,17 @@ function launchRocket(){
  const status=document.getElementById('rocketStatus');
  const btn=document.getElementById('rocketBtn');
  btn.disabled=true;art.classList.add('opening');status.textContent='Uchmoqda...';
- say('🚀 Raketa uchmoqda! Demo animatsiya.');
+ say('🚀 Demo raketa uchmoqda!');
  setTimeout(()=>{
-  art.classList.remove('opening');art.textContent='🌌';status.textContent='Parvoz tugadi!';
-  btn.disabled=false;rocketBusy=false;say('🚀 Demo parvoz muvaffaqiyatli yakunlandi!');
+  art.classList.remove('opening');art.textContent='🌌';
+  status.textContent='Parvoz tugadi!';
+  btn.disabled=false;rocketBusy=false;
+  say('🚀 Demo parvoz yakunlandi!');
  },1800);
 }
+loadGame();
 update();
 </script>
 </body>
-</html>
+                         </html>
+   
