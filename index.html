@@ -3,211 +3,177 @@
 <html lang="uz">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#090914">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0b0918">
 <title>VEXORA</title>
 <style>
 *{box-sizing:border-box}
-body{margin:0;background:#090914;color:#f5f4ff;font-family:system-ui,sans-serif}
-header,main{max-width:700px;margin:auto;padding:20px}
-header{font-weight:900;font-size:25px;letter-spacing:3px}
-header span{color:#9270ff}
-h1{font-size:26px}
-p{line-height:1.5}
-.muted{color:#a4a2bd;font-size:13px}
-.panel{background:#151429;border:1px solid #302b50;border-radius:20px;padding:18px;margin:16px 0}
-.row{display:flex;align-items:center;gap:13px}
-.logo{width:54px;height:54px;display:grid;place-items:center;background:#168fe0;border-radius:17px;font-size:26px;font-weight:bold}
-.balance{font-size:29px;font-weight:800;margin:22px 0 5px;overflow-wrap:anywhere}
-button{font:inherit;cursor:pointer}
-.primary{width:100%;border:0;border-radius:12px;background:#9270ff;color:white;padding:13px;font-weight:700;margin-top:12px}
-.status{font-size:12px;color:#aaa7c7;overflow-wrap:anywhere;margin-top:12px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.tile{background:#151429;border:1px solid #302b50;border-radius:16px;padding:17px;cursor:pointer;color:white;text-align:left}
-.tile b{display:block;margin:8px 0}
-.notice{background:#1a1830;border-radius:12px;padding:12px;font-size:12px;color:#bdb9d7;line-height:1.6;margin-top:15px}
-.page{display:none}.page.active{display:block}
-nav{position:fixed;bottom:0;left:0;right:0;background:#111020;border-top:1px solid #302b50;display:flex;justify-content:center;padding:8px}
-nav button{flex:1;max-width:150px;background:none;color:#aaa7c7;border:0;padding:10px 2px;font-size:12px}
-nav button.active{color:white;background:#292343;border-radius:10px}
+body{margin:0;background:#0b0918;color:#f6f3ff;font-family:system-ui,sans-serif}
+header,main{max-width:720px;margin:auto;padding:20px}
+header{font-size:26px;font-weight:900;letter-spacing:3px}
+header span{color:#9c78ff}
 main{padding-bottom:90px}
+h1{font-size:27px}
+h2{font-size:19px}
+p{line-height:1.5}
+.muted{color:#a5a0bd;font-size:13px}
+.panel{padding:18px;background:#17142a;border:1px solid #30294e;border-radius:19px;margin:16px 0}
+.row{display:flex;align-items:center;gap:13px}
+.ton-icon{width:52px;height:52px;border-radius:16px;background:#168fe0;display:grid;place-items:center;font-size:25px;font-weight:900}
+.balance{font-size:29px;font-weight:800;margin-top:22px;overflow-wrap:anywhere}
+.status{font-size:12px;color:#aaa5c8;margin-top:10px;overflow-wrap:anywhere}
+button{font:inherit;cursor:pointer}
+.primary{display:block;width:100%;margin-top:14px;border:0;border-radius:12px;padding:13px;background:#8c6bff;color:white;font-weight:750}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.tile{padding:17px;text-align:left;color:white;background:#17142a;border:1px solid #30294e;border-radius:16px}
+.tile strong{display:block;margin:8px 0}
+.notice{margin-top:15px;padding:13px;border-radius:12px;background:#201b34;color:#c4bfdc;font-size:12px;line-height:1.6}
+.page{display:none}.page.active{display:block}
+nav{position:fixed;bottom:0;left:0;right:0;display:flex;justify-content:center;background:#100e20;border-top:1px solid #30294e;padding:8px}
+nav button{flex:1;max-width:160px;padding:11px 2px;border:0;border-radius:9px;background:none;color:#a5a0bd;font-size:12px}
+nav button.active{background:#2a2147;color:white}
 @media(max-width:380px){.grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 <header>VE<span>X</span>ORA</header>
 <main>
-<section id="home" class="page active">
-<h1>TON Wallet</h1>
-<p class="muted">Telegram Wallet orqali xavfsiz ulanish.</p>
+<section class="page active" id="home">
+<h1>Raqamli aktivlaring</h1>
+<p class="muted">TON Wallet va kolleksiyalar uchun boshqaruv paneli.</p>
 
 <div class="panel">
-  <div class="row">
-    <div class="logo">T</div>
-    <div>
-      <b>TON Mainnet</b>
-      <div class="muted">Haqiqiy blokcheyn balansi</div>
-    </div>
-  </div>
-
-  <div class="balance" id="balance">— TON</div>
-  <div class="status" id="balance-status" aria-live="polite">
-    Balans hali olinmadi.
-  </div>
-
-  <div id="ton-connect" style="margin-top:18px"></div>
-  <button class="primary" id="refresh" disabled>
-    Balansni yangilash
-  </button>
-  <div class="status" id="wallet-status">Hamyon ulanmagan.</div>
-  <div class="status" id="wallet-address"></div>
+ <div class="row">
+  <div class="ton-icon">T</div>
+  <div><h2 style="margin:0">TON Wallet</h2>
+  <div class="muted">TON Mainnet</div></div>
+ </div>
+ <div id="balance" class="balance">— TON</div>
+ <div id="balance-status" class="status">Hamyon ulanmagan. Balans olinmadi.</div>
+ <div id="ton-connect" style="margin-top:16px"></div>
+ <button class="primary" id="refresh" disabled>Balansni yangilash</button>
+ <div id="wallet-status" class="status">Hamyon ulanmagan.</div>
+ <div id="wallet-address" class="status"></div>
 </div>
 
 <div class="grid">
-  <button class="tile" onclick="showPage('gifts')">
-    <div style="font-size:28px">🎁</div>
-    <b>Telegram Gifts</b>
-    <span class="muted">Kolleksiya</span>
-  </button>
-  <button class="tile" onclick="showPage('nfts')">
-    <div style="font-size:28px">🖼️</div>
-    <b>NFT Collection</b>
-    <span class="muted">Raqamli aktivlar</span>
-  </button>
+ <button class="tile" onclick="showPage('gifts')">
+  <span style="font-size:28px">🎁</span>
+  <strong>Telegram Gifts</strong>
+  <span class="muted">Sovg‘alar kolleksiyasi</span>
+ </button>
+ <button class="tile" onclick="showPage('nfts')">
+  <span style="font-size:28px">🖼️</span>
+  <strong>NFT Collection</strong>
+  <span class="muted">Raqamli kolleksiya</span>
+ </button>
 </div>
+<div class="notice">Haqiqiy balans blokcheyn manbasidan olinadi. Gift va NFT egaligi hali tekshirilmagan bo‘lsa, ular mavjud deb ko‘rsatilmaydi. Seed phrase yoki maxfiy kalitni hech qachon kiritmang.</div>
+</section>
 
-<div class="notice">
-  Balans TON blokcheynidan olinadi. Bu ilova hech qachon seed phrase yoki maxfiy kalit so‘ramaydi.
+<section class="page" id="gifts">
+<h1>Telegram Gifts</h1>
+<div class="panel">
+ <h2>Mening sovg‘alarim</h2>
+ <p class="muted">Sovg‘alarni aniqlash integratsiyasi hali ulanmagan. Tasdiqlangan ma’lumot bo‘lmagani uchun ro‘yxat bo‘sh.</p>
 </div>
 </section>
 
-<section id="gifts" class="page">
-  <h1>Telegram Gifts</h1>
-  <div class="panel">
-    <b>Mening sovg‘alarim</b>
-    <p class="muted">Gift ma’lumotlari hali ulanmagan. Bu yerda soxta sovg‘alar ko‘rsatilmaydi.</p>
-  </div>
-</section>
-
-<section id="nfts" class="page">
-  <h1>NFT Collection</h1>
-  <div class="panel">
-    <b>Mening NFT’larim</b>
-    <p class="muted">NFT egaligini tekshirish integratsiyasi hali ulanmagan.</p>
-  </div>
+<section class="page" id="nfts">
+<h1>NFT Collection</h1>
+<div class="panel">
+ <h2>Mening NFT’larim</h2>
+ <p class="muted">NFT egaligini tekshirish manbasi hali ulanmagan. Bu yerda soxta NFT ko‘rsatilmaydi.</p>
+</div>
 </section>
 </main>
 
 <nav>
-  <button class="active" data-page="home" onclick="showPage('home')">⌂ Home</button>
-  <button data-page="gifts" onclick="showPage('gifts')">🎁 Gifts</button>
-  <button data-page="nfts" onclick="showPage('nfts')">🖼 NFTs</button>
+ <button class="active" data-page="home" onclick="showPage('home')">⌂ Home</button>
+ <button data-page="gifts" onclick="showPage('gifts')">🎁 Gifts</button>
+ <button data-page="nfts" onclick="showPage('nfts')">▧ NFTs</button>
 </nav>
 
 <script>
 function showPage(id){
-  document.querySelectorAll('.page').forEach(p=>
-    p.classList.toggle('active',p.id===id)
-  );
-  document.querySelectorAll('nav button').forEach(b=>
-    b.classList.toggle('active',b.dataset.page===id)
-  );
+ document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id===id));
+ document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===id));
 }
 
-const balanceEl=document.getElementById('balance');
-const balanceStatus=document.getElementById('balance-status');
-const walletStatus=document.getElementById('wallet-status');
-const addressEl=document.getElementById('wallet-address');
-const refreshBtn=document.getElementById('refresh');
+const $=id=>document.getElementById(id);
+let address=null,requesting=false;
 
-let connectedAddress=null;
-let tonUI=null;
-let requestInProgress=false;
+async function fetchBalance(){
+ if(!address||requesting)return;
+ requesting=true;
+ $('refresh').disabled=true;
+ $('balance').textContent='Yuklanmoqda…';
+ $('balance-status').textContent='TON Mainnet balansi tekshirilmoqda.';
 
-async function loadBalance(){
-  if(!connectedAddress || requestInProgress)return;
-  requestInProgress=true;
-  refreshBtn.disabled=true;
-  balanceEl.textContent='Yuklanmoqda…';
-  balanceStatus.textContent='Blokcheyn balansi tekshirilmoqda.';
+ try{
+  const r=await fetch('https://toncenter.com/api/v2/getAddressBalance?address='+encodeURIComponent(address));
+  if(!r.ok)throw Error('HTTP '+r.status);
+  const d=await r.json();
+  if(d.ok!==true||d.result==null)throw Error('Balans olinmadi');
 
-  try{
-    const url='https://toncenter.com/api/v2/getAddressBalance?address='+
-      encodeURIComponent(connectedAddress);
+  const n=BigInt(d.result);
+  const whole=n/1000000000n;
+  const frac=(n%1000000000n).toString().padStart(9,'0');
+  const amount=(whole.toString()+'.'+frac).replace(/\.?0+$/,'');
+  $('balance').textContent=amount+' TON';
+  $('balance-status').textContent='TON Mainnet ma’lumoti olindi · '+new Date().toLocaleTimeString();
+ }catch(e){
+  $('balance').textContent='— TON';
+  $('balance-status').textContent='Balans olinmadi. Internet yoki API xizmatini tekshiring.';
+ }finally{
+  requesting=false;
+  $('refresh').disabled=!address;
+ }
+}
+$('refresh').addEventListener('click',fetchBalance);
 
-    const response=await fetch(url,{method:'GET'});
-    if(!response.ok)throw new Error('API_HTTP_'+response.status);
-
-    const data=await response.json();
-    if(data.ok!==true || data.result===undefined){
-      throw new Error('API javobi noto‘g‘ri');
-    }
-
-    const nano=BigInt(data.result);
-    const whole=nano/1000000000n;
-    const fraction=(nano%1000000000n).toString().padStart(9,'0');
-    const formatted=whole.toString()+'.'+fraction;
-
-    balanceEl.textContent=formatted.replace(/\.?0+$/,'')+' TON';
-    balanceStatus.textContent=
-      'TON Mainnet · API javobi: '+new Date().toLocaleString();
-  }catch(error){
-    balanceEl.textContent='— TON';
-    balanceStatus.textContent=
-      'Balansni olib bo‘lmadi. Internet yoki API javobini tekshiring.';
-  }finally{
-    requestInProgress=false;
-    refreshBtn.disabled=!connectedAddress;
+function initTonConnect(){
+ const s=document.createElement('script');
+ s.src='https://unpkg.com/@tonconnect/ui@latest/dist/tonconnect-ui.min.js';
+ s.async=true;
+ s.onload=()=>{
+  if(!window.TON_CONNECT_UI){
+   $('wallet-status').textContent='TON Connect kutubxonasi yuklanmadi.';
+   return;
   }
+  try{
+   const ui=new window.TON_CONNECT_UI.TonConnectUI({
+    manifestUrl:'https://fayzern3-maker.github.io/vexora-app/tonconnect-manifest.json',
+    buttonRootId:'ton-connect',
+    actionsConfiguration:{
+     twaReturnUrl:'https://t.me/'
+    }
+   });
+   ui.onStatusChange(wallet=>{
+    if(wallet&&wallet.account&&wallet.account.address){
+     address=wallet.account.address;
+     $('wallet-status').textContent='Hamyon ulandi.';
+     $('wallet-address').textContent='Manzil: '+address;
+     $('refresh').disabled=false;
+     fetchBalance();
+    }else{
+     address=null;
+     $('balance').textContent='— TON';
+     $('balance-status').textContent='Balans olinmadi.';
+     $('wallet-status').textContent='Hamyon ulanmagan.';
+     $('wallet-address').textContent='';
+     $('refresh').disabled=true;
+    }
+   });
+  }catch(e){
+   $('wallet-status').textContent='TON Connect sozlamalarini tekshiring.';
+  }
+ };
+ s.onerror=()=>$('wallet-status').textContent='TON Connect yuklanmadi. Internetni tekshiring.';
+ document.head.appendChild(s);
 }
-
-refreshBtn.addEventListener('click',loadBalance);
-
-(function init(){
-  const script=document.createElement('script');
-  script.src='https://unpkg.com/@tonconnect/ui@latest/dist/tonconnect-ui.min.js';
-  script.async=true;
-
-  script.onload=function(){
-    if(!window.TON_CONNECT_UI){
-      walletStatus.textContent='TON Connect kutubxonasi yuklanmadi.';
-      return;
-    }
-
-    try{
-      tonUI=new window.TON_CONNECT_UI.TonConnectUI({
-        manifestUrl:'https://fayzern3-maker.github.io/vexora-app/tonconnect-manifest.json',
-        buttonRootId:'ton-connect'
-      });
-
-      tonUI.onStatusChange(function(wallet){
-        if(wallet && wallet.account && wallet.account.address){
-          connectedAddress=wallet.account.address;
-          addressEl.textContent='Hamyon: '+connectedAddress;
-          walletStatus.textContent='Hamyon ulandi.';
-          refreshBtn.disabled=false;
-          loadBalance();
-        }else{
-          connectedAddress=null;
-          addressEl.textContent='';
-          balanceEl.textContent='— TON';
-          balanceStatus.textContent='Balans hali olinmadi.';
-          walletStatus.textContent='Hamyon ulanmagan.';
-          refreshBtn.disabled=true;
-        }
-      });
-    }catch(error){
-      walletStatus.textContent='TON Connect sozlamalarini tekshiring.';
-    }
-  };
-
-  script.onerror=function(){
-    walletStatus.textContent='TON Connect kutubxonasi yuklanmadi.';
-  };
-
-  document.head.appendChild(script);
-})();
+initTonConnect();
 </script>
 </body>
-                                   </html>
+                                        </html>
   
