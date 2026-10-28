@@ -8,241 +8,325 @@
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 <script src="https://unpkg.com/@tonconnect/ui@latest/dist/tonconnect-ui.min.js"></script>
 <style>
-:root{--bg:#0b0915;--panel:#171326;--panel2:#211a36;--purple:#8b5cf6;--gold:#ffd166;--text:#f6f2ff;--muted:#aaa1c4}
 *{box-sizing:border-box}
-body{margin:0;background:radial-gradient(circle at top,#28174a,#0b0915 55%);color:var(--text);font-family:Arial,sans-serif;padding-bottom:88px}
-header{padding:18px 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #ffffff12}
-.logo{font-size:24px;font-weight:900;letter-spacing:2px;color:#c4a7ff}
-.small{font-size:12px;color:var(--muted)}
-button,input{font:inherit}
-button{border:0;cursor:pointer;color:white;background:linear-gradient(135deg,#8b5cf6,#6236c7);border-radius:12px;padding:12px;font-weight:800}
-button:disabled{opacity:.5;cursor:not-allowed}
-main{max-width:700px;margin:auto;padding:15px}
+:root{--bg:#0b0915;--panel:#1b142c;--purple:#925bfa;--gold:#ffd166;--muted:#aaa0c2}
+body{margin:0;background:radial-gradient(ellipse at top,#30204d,#0b0915 60%);color:#f7f2ff;font-family:Arial,sans-serif;padding-bottom:80px}
+button,input{font:inherit}button{border:0;border-radius:12px;padding:12px;color:white;font-weight:bold;background:linear-gradient(135deg,#985fff,#6035c4);cursor:pointer}
+header{display:flex;align-items:center;justify-content:space-between;gap:6px;padding:12px;background:#100c1df5;position:sticky;top:0;z-index:3;border-bottom:1px solid #ffffff15}
+.brand{font-weight:900;color:#cbb0ff;letter-spacing:1px}
+.topright{display:flex;align-items:center;gap:7px}
+.bal{text-align:right;font-size:12px;color:var(--gold);white-space:nowrap}
+.bal strong{display:block;font-size:14px;margin-top:4px}
+.profilebtn,.secondary{background:#ffffff10;border:1px solid #ffffff15}
+main{max-width:700px;margin:auto;padding:13px}
 .page{display:none}.page.active{display:block}
-.card{background:linear-gradient(145deg,#211a36,#151121);border:1px solid #ffffff12;border-radius:18px;padding:16px;margin-bottom:14px}
-.row{display:flex;justify-content:space-between;align-items:center;gap:12px}
-.balance{font-size:27px;font-weight:900;margin:8px 0;color:var(--gold)}
-h2{font-size:19px;margin:5px 0 14px}
-h3{margin:8px 0;font-size:15px}
-p{color:var(--muted);font-size:13px;line-height:1.5}
-.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-.case{min-height:150px;text-align:center;position:relative;overflow:hidden}
-.case-art{height:82px;border-radius:14px;background:radial-gradient(circle,#6742a4,#211333);display:grid;place-items:center;font-size:42px;margin-bottom:10px;border:1px solid #ffffff20}
-.case button{width:100%;margin-top:8px}
-.pill{display:inline-block;padding:6px 10px;border-radius:20px;background:#ffffff10;color:#d8c6ff;font-size:11px}
-.levelbar{height:9px;background:#ffffff15;border-radius:10px;overflow:hidden;margin:12px 0}
-.levelbar div{height:100%;width:0;background:linear-gradient(90deg,#8b5cf6,#ffd166)}
-.level-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
-.level{padding:10px 2px;text-align:center;border-radius:12px;background:#ffffff09;border:1px solid #ffffff10;font-size:11px}
-.level .medal{font-size:22px;display:block;margin-bottom:5px}
-.level.current{border-color:var(--gold);background:#ffd16618}
-input{width:100%;padding:13px;border-radius:11px;border:1px solid #ffffff20;background:#0e0b19;color:white;margin:7px 0}
-.actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-nav{position:fixed;bottom:0;left:0;right:0;z-index:5;display:flex;justify-content:space-around;background:#100c1d;border-top:1px solid #ffffff18;padding:9px 2px calc(9px + env(safe-area-inset-bottom))}
-nav button{background:transparent;padding:7px 3px;font-size:10px;flex:1;color:#c5badf}
-nav button.active{color:#d0b7ff;background:#ffffff0b}
-.btn-secondary{background:#ffffff12;border:1px solid #ffffff16}
-.notice{font-size:12px;background:#ffffff08;border-radius:12px;padding:12px;color:#c9c0df;line-height:1.5}
-.stat{background:#ffffff08;padding:12px;border-radius:12px;flex:1}
-.modal{display:none;position:fixed;inset:0;z-index:10;background:#05030bd9;align-items:center;justify-content:center;padding:18px}
+.card{padding:16px;background:linear-gradient(145deg,#241b3b,#151020);border:1px solid #ffffff12;border-radius:18px;margin-bottom:13px}
+h2{font-size:19px;margin:3px 0 13px}h3{font-size:15px;margin:8px 0}
+p,.muted{font-size:12px;color:var(--muted);line-height:1.5}
+.row{display:flex;align-items:center;justify-content:space-between;gap:9px}
+.hero{padding:19px;background:linear-gradient(135deg,#392356,#171025);border-radius:20px;margin-bottom:14px}
+.bigbalance{font-size:28px;font-weight:900;color:var(--gold);margin:12px 0}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.case{padding:10px;background:#ffffff07;border:1px solid #ffffff12;border-radius:15px;text-align:center}
+.art{height:92px;border-radius:12px;background:radial-gradient(circle,#7148ad,#211333);display:grid;place-items:center;font-size:48px;margin-bottom:8px}
+.case button{width:100%;margin-top:9px}
+.pill{display:inline-block;padding:5px 9px;border-radius:20px;background:#ffffff10;font-size:10px;color:#d7c2ff}
+.levels{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:5px}
+.level{padding:9px 2px;text-align:center;border-radius:10px;background:#ffffff08;border:1px solid #ffffff12;font-size:10px}
+.level span{display:block;font-size:21px;margin-bottom:5px}
+.level.current{border-color:var(--gold);background:#ffd16615}
+.bar{height:8px;background:#ffffff14;border-radius:20px;overflow:hidden;margin:12px 0}
+.bar div{height:100%;width:0;background:linear-gradient(90deg,#925bfa,#ffd166)}
+.item{padding:12px;background:#ffffff08;border-radius:11px;margin-top:8px}
+input{width:100%;padding:12px;background:#0c0916;color:white;border:1px solid #ffffff20;border-radius:10px;margin:7px 0}
+.notice{font-size:11px;color:#c5badb;background:#ffffff08;border-radius:10px;padding:11px;line-height:1.5}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.stat{background:#ffffff08;padding:12px;border-radius:12px}
+nav{position:fixed;bottom:0;left:0;right:0;z-index:5;display:flex;background:#100c1df5;border-top:1px solid #ffffff18;padding:7px 2px calc(7px + env(safe-area-inset-bottom))}
+nav button{flex:1;padding:7px 1px;background:transparent;color:#bcb1d4;font-size:10px;line-height:1.5}
+nav button.active{background:#ffffff10;color:#d6baff}
+.modal{display:none;position:fixed;inset:0;z-index:10;background:#05030be8;align-items:center;justify-content:center;padding:16px}
 .modal.show{display:flex}
-.modalbox{width:100%;max-width:440px;background:#19132a;border:1px solid #ffffff20;border-radius:20px;padding:20px;max-height:85vh;overflow:auto}
-.close{float:right;background:#ffffff12;padding:7px 11px}
-.item{padding:11px;background:#ffffff08;border-radius:10px;margin-top:8px}
-footer{text-align:center;color:#73698b;font-size:11px;padding:20px}
+.modalbox{width:100%;max-width:420px;max-height:85vh;overflow:auto;background:#1b142c;border:1px solid #ffffff20;border-radius:18px;padding:18px}
+.close{float:right;background:#ffffff12;padding:7px 10px}
+footer{text-align:center;padding:16px;color:#706586;font-size:10px}
+@keyframes glow{0%,100%{filter:drop-shadow(0 0 3px #a86bff)}50%{filter:drop-shadow(0 0 20px #a86bff)}}
+.rocket{font-size:85px;margin:22px 0;display:inline-block}
+@media(max-width:380px){header{padding:9px}.brand{font-size:13px}.topright{gap:4px}.bal strong{font-size:12px}header button{font-size:11px;padding:9px}.levels{gap:3px}}
 </style>
 </head>
 <body>
+
 <header>
-  <div><div class="logo">VEXORA</div><div class="small">DIGITAL COLLECTIBLES</div></div>
-  <button onclick="showPage('deposit')">＋ Balans</button>
+  <button class="profilebtn" onclick="showPage('profile')">👤 Profil</button>
+  <div class="brand">VEXORA</div>
+  <div class="topright">
+    <div class="bal">Balans<strong><span id="headerBalance">0.00</span> TON</strong></div>
+    <button onclick="showPage('deposit')">＋ Depozit</button>
+  </div>
 </header>
 
 <main>
 <section class="page active" id="home">
-  <div class="card">
-    <div class="row"><span class="small">Sizning balansingiz</span><span class="pill" id="levelPill">🥉 Mis</span></div>
-    <div class="balance"><span id="balance">0.00</span> TON</div>
-    <div class="small">Stars: <b id="starsBalance">0</b> ⭐</div>
-    <div class="actions" style="margin-top:14px">
-      <button onclick="showPage('deposit')">Balans to‘ldirish</button>
-      <button class="btn-secondary" onclick="showPage('levels')">Level’im</button>
-    </div>
+  <div class="hero">
+    <div class="row"><span class="muted">VEXORA ACCOUNT</span><span class="pill" id="levelPill">🥉 Mis</span></div>
+    <div class="bigbalance"><span id="homeBalance">0.00</span> TON</div>
+    <div class="muted">Keyingi level uchun progress</div>
+    <div class="bar"><div id="homeProgress"></div></div>
+    <div class="row"><span class="muted" id="homeNext">Keyingi level: Iron</span><button onclick="showPage('profile')">Profil →</button></div>
   </div>
+
   <div class="card">
     <h2>🎁 Keys</h2>
     <div class="grid">
-      <div class="case"><div class="case-art">🗝️</div><h3>Free Key</h3><span class="pill">Demo</span><button onclick="openCase('Free Key')">Ochish</button></div>
-      <div class="case"><div class="case-art">🎟️</div><h3>Promo Key</h3><span class="pill">Promo kod</span><button onclick="openPromo()">Kiritish</button></div>
+      <div class="case"><div class="art">🗝️</div><h3>Free Key</h3><span class="pill">Demo</span><button onclick="openCase('Free Key')">Ochish</button></div>
+      <div class="case"><div class="art">🎟️</div><h3>Promo Key</h3><span class="pill">Promo kod</span><button onclick="openPromo()">Ochish</button></div>
     </div>
   </div>
+
   <div class="card">
     <h2>📦 Case’lar</h2>
-    <p>Bu bo‘lim vizual demo. Pullik tasodifiy sovrin yoki haqiqiy sovrin transferi yo‘q.</p>
     <div class="grid">
-      <div class="case"><div class="case-art">💠</div><h3>Crystal Case</h3><span class="pill">Ko‘rish uchun</span><button onclick="openCase('Crystal Case')">Ko‘rish</button></div>
-      <div class="case"><div class="case-art">👑</div><h3>Royal Case</h3><span class="pill">Ko‘rish uchun</span><button onclick="openCase('Royal Case')">Ko‘rish</button></div>
+      <div class="case"><div class="art">💠</div><h3>Crystal Case</h3><span class="pill">Demo</span><button onclick="openCase('Crystal Case')">Ochish</button></div>
+      <div class="case"><div class="art">👑</div><h3>Royal Case</h3><span class="pill">Demo</span><button onclick="openCase('Royal Case')">Ochish</button></div>
     </div>
+    <p>Case ochilishi demo sovg‘ani tasodifiy tanlaydi. Haqiqiy pul yoki NFT berilmaydi.</p>
   </div>
+
   <div class="card">
-    <h2>🏆 Level tizimi</h2>
-    <div class="level-grid" id="miniLevels"></div>
-    <button style="width:100%;margin-top:12px" onclick="showPage('levels')">Level’larni ko‘rish</button>
+    <h2>🏅 Level’lar</h2><div class="levels" id="miniLevels"></div>
+    <button style="width:100%;margin-top:12px" onclick="showPage('profile')">Level’larim</button>
   </div>
 </section>
 
 <section class="page" id="deposit">
   <div class="card">
-    <h2>💎 Balans to‘ldirish</h2>
-    <p>To‘lov usulini tanlang. Ushbu statik demo to‘lovni qabul qilmaydi va balansni haqiqiy to‘lovsiz oshirmaydi.</p>
-    <div class="item"><div class="row"><b>💎 TON</b><span class="pill">TON Connect</span></div><p>Hamyoningizni ulash uchun quyidagi tugmadan foydalaning.</p><div id="ton-connect" style="margin:12px 0"></div><button class="btn-secondary" style="width:100%" onclick="copyAddress()">Depozit manzilini nusxalash</button></div>
-    <div class="item"><div class="row"><b>⭐ Telegram Stars</b><span class="pill">Telegram</span></div><p>Stars orqali haqiqiy to‘lov uchun Telegram Bot API invoice va server tomonda to‘lov tasdig‘i kerak.</p><button style="width:100%" onclick="starsInfo()">Stars bilan to‘ldirish</button></div>
-    <div class="notice" style="margin-top:12px">Muhim: hamyon ulanishi depozit tasdiqlandi degani emas. Haqiqiy balans server tomonidan tekshirilgan tranzaksiya yoki Stars to‘lovi asosida yangilanishi kerak.</div>
+    <h2>💎 TON depozit</h2>
+    <p>Hamyonni ulash va depozit manzilini ko‘rish.</p>
+    <div id="ton-connect" style="margin:12px 0"></div>
+    <button class="secondary" style="width:100%" onclick="copyAddress()">📋 TON manzilini nusxalash</button>
+    <div class="notice" style="margin-top:12px">Hamyon ulanishi to‘lovni tasdiqlamaydi. Haqiqiy balans uchun server tranzaksiyani tekshirishi zarur.</div>
   </div>
   <div class="card">
-    <h2>📜 To‘lovlar</h2>
-    <p id="paymentHistory">Hozircha tasdiqlangan to‘lovlar yo‘q.</p>
+    <h2>⭐ Telegram Stars</h2>
+    <p>Haqiqiy Stars to‘lovi uchun Telegram Bot API invoice va server tasdig‘i kerak.</p>
+    <button style="width:100%" onclick="starsInfo()">Stars bilan to‘ldirish</button>
+  </div>
+  <div class="card"><h2>📜 Depozit tarixi</h2><p id="history">Tasdiqlangan depozitlar yo‘q.</p></div>
+</section>
+
+<section class="page" id="profile">
+  <div class="card">
+    <h2>👤 Profil</h2>
+    <div class="row"><div><span class="muted">Telegram foydalanuvchisi</span><h3 id="username">Mehmon</h3></div><span style="font-size:40px">🧑‍🚀</span></div>
+    <div class="stats">
+      <div class="stat"><span class="muted">Jami tasdiqlangan TON</span><h3><span id="totalTon">0.00</span> TON</h3></div>
+      <div class="stat"><span class="muted">Level</span><h3 id="profileLevel">Mis</h3></div>
+    </div>
+  </div>
+  <div class="card">
+    <h2>🏅 Level tizimi</h2>
+    <div class="row"><b id="currentLevel">🥉 Mis</b><span class="pill"><span id="profileTon">0.00</span> TON</span></div>
+    <div class="bar"><div id="profileProgress"></div></div>
+    <p id="nextLevel">Keyingi level: Iron</p>
+    <div class="levels" id="allLevels"></div>
+    <p>Level chegaralari demo sozlamalari. Haqiqiy level server tasdiqlagan depozitlar asosida hisoblanadi.</p>
+  </div>
+  <div class="card"><h2>👥 Taklif qilish</h2><input id="inviteLink" readonly><button style="width:100%" onclick="copyInvite()">Havolani nusxalash</button></div>
+</section>
+
+<section class="page" id="ranking">
+  <div class="card"><h2>🏆 Reyting</h2><p>Namunaviy reyting; bu haqiqiy foydalanuvchilar ma’lumoti emas.</p>
+    <div class="item">🥇 1. VEXORA Player — 150 TON</div>
+    <div class="item">🥈 2. CrystalUser — 90 TON</div>
+    <div class="item">🥉 3. NewPlayer — 30 TON</div>
   </div>
 </section>
 
-<section class="page" id="levels">
-  <div class="card">
-    <h2>🏅 VEXORA darajalari</h2>
-    <p>Quyidagi progress demo ballari asosida ishlaydi. Haqiqiy to‘lov bilan avtomatik bog‘lanmagan.</p>
-    <div class="row"><b id="currentLevel">🥉 Mis</b><span class="pill"><span id="points">0</span> XP</span></div>
-    <div class="levelbar"><div id="progress"></div></div>
-    <div class="small" id="nextLevel">Keyingi daraja: Iron</div>
+<section class="page" id="upgrade">
+  <div class="card"><h2>💎 NFT UPGRADE</h2><div class="art" style="height:140px;font-size:70px">💎</div>
+    <p>NFT kolleksiyasini ko‘rish va upgrade interfeysi.</p>
+    <div class="item">🖼️ NFT tanlash</div><div class="item">✨ Demo natija</div>
+    <button style="width:100%;margin-top:10px" onclick="showModal('UPGRADE','<p>Bu demo interfeys. Haqiqiy NFT almashinuvi amalga oshirilmaydi.</p>')">NFT tanlash</button>
   </div>
-  <div class="card"><div class="level-grid" id="allLevels"></div></div>
-  <div class="card">
-    <h3>Level’lar qanday ishlaydi?</h3>
-    <div class="item">🥉 <b>Mis</b> — boshlang‘ich daraja</div>
-    <div class="item">⚙️ <b>Iron</b> — 100 XP</div>
-    <div class="item">🥉 <b>Bronz</b> — 300 XP</div>
-    <div class="item">🥇 <b>Gold</b> — 700 XP</div>
-    <div class="item">💎 <b>Olmos</b> — 1500 XP</div>
-    <p>XP hozircha demo uchun. Server qo‘shilgach, qoidalarni xavfsiz tarzda serverda hisoblash mumkin.</p>
+</section>
+
+<section class="page" id="rocket">
+  <div class="card" style="text-align:center">
+    <h2>🚀 VEXORA ROCKET</h2>
+    <div id="rocketEmoji" class="rocket">🚀</div>
+    <div id="rocketMultiplier" style="font-size:38px;font-weight:900;color:#ffd166">1.00x</div>
+    <p>Animatsion demo. Pul tikish yoki pul yutish mavjud emas.</p>
+    <button style="width:100%" onclick="startRocket()">🚀 Rocketni boshlash</button>
+    <p id="rocketMessage">Boshlash tugmasini bosing.</p>
   </div>
 </section>
 
 <section class="page" id="nft">
-  <div class="card"><h2>🖼️ NFT kolleksiyasi</h2><p>Bu yerda o‘zingizga tegishli NFT’larni ko‘rish va katalog yaratish mumkin.</p><div class="grid" id="nftGrid"></div></div>
-</section>
-
-<section class="page" id="profile">
-  <div class="card"><h2>👤 Profil</h2><div class="row"><div><div class="small">Telegram foydalanuvchisi</div><h3 id="username">Mehmon</h3></div><div style="font-size:38px">🧑‍🚀</div></div><hr style="border-color:#ffffff12"><div class="row"><div class="stat"><div class="small">Level</div><h3 id="profileLevel">Mis</h3></div><div class="stat"><div class="small">XP</div><h3 id="profileXP">0</h3></div></div><div class="row" style="margin-top:10px"><div class="stat"><div class="small">Demo ochishlar</div><h3 id="openCount">0</h3></div><div class="stat"><div class="small">NFT’lar</div><h3>0</h3></div></div></div>
-</section>
-
-<section class="page" id="invite">
-  <div class="card"><h2>👥 Do‘stlarni taklif qilish</h2><p>Taklif havolasini ulashing. Bu demo haqiqiy referral mukofoti hisoblamaydi.</p><input id="inviteLink" readonly><button style="width:100%" onclick="copyInvite()">Havolani nusxalash</button></div>
-</section>
-
-<section class="page" id="ranking">
-  <div class="card"><h2>🏆 Reyting</h2><p>Demo reyting — haqiqiy foydalanuvchilar reytingi emas.</p><div class="item">🥇 1. VEXORA Player — 1500 XP</div><div class="item">🥈 2. CrystalUser — 900 XP</div><div class="item">🥉 3. NewPlayer — 300 XP</div></div>
+  <div class="card"><h2>🖼️ NFT katalogi</h2><div class="grid" id="nftGrid"></div></div>
 </section>
 </main>
 
 <nav>
-<button class="active" onclick="showPage('home',this)">🏠<br>Bosh sahifa</button>
-<button onclick="showPage('deposit',this)">💎<br>Balans</button>
-<button onclick="showPage('nft',this)">🖼️<br>NFT</button>
-<button onclick="showPage('levels',this)">🏅<br>Level</button>
-<button onclick="showPage('invite',this)">👥<br>Taklif</button>
-<button onclick="showPage('profile',this)">👤<br>Profil</button>
+  <button class="active" onclick="showPage('home',this)">🏠<br>Bosh sahifa</button>
+  <button onclick="showPage('ranking',this)">🏆<br>Reyting</button>
+  <button onclick="showPage('upgrade',this)">💎<br>UPG</button>
+  <button onclick="showPage('rocket',this)">🚀<br>Rocket</button>
+  <button onclick="showPage('nft',this)">🎁<br>NFT</button>
 </nav>
 
-<div class="modal" id="modal">
-  <div class="modalbox">
-    <button class="close" onclick="closeModal()">✕</button>
-    <h2 id="modalTitle">VEXORA</h2>
-    <div id="modalBody"></div>
-  </div>
-</div>
-<footer>VEXORA © Demo interface · Real payments require a secure backend.</footer>
+<div class="modal" id="modal"><div class="modalbox">
+  <button class="close" onclick="closeModal()">✕</button>
+  <h2 id="modalTitle">VEXORA</h2><div id="modalBody"></div>
+</div></div>
+<footer>VEXORA · Demo interfeys</footer>
 
 <script>
 const DEPOSIT_ADDRESS="UQBGBtNxXKb929DYB2mP6x4WoiD6ThYxcO_7IT7EJdaIsiXF";
 const MANIFEST_URL="https://fayzern3-maker.github.io/vexora-app/tonconnect-manifest.json";
-
+const demoTotalTon=0;
 const levels=[
- {name:"Mis",icon:"🥉",xp:0},
- {name:"Iron",icon:"⚙️",xp:100},
- {name:"Bronz",icon:"🥉",xp:300},
- {name:"Gold",icon:"🥇",xp:700},
- {name:"Olmos",icon:"💎",xp:1500}
+ {name:"Mis",icon:"🥉",ton:0},
+ {name:"Iron",icon:"⚙️",ton:1},
+ {name:"Bronz",icon:"🥉",ton:5},
+ {name:"Gold",icon:"🥇",ton:15},
+ {name:"Olmos",icon:"💎",ton:50}
 ];
-let demoXP=0,opens=0;
-const tg=window.Telegram?.WebApp;
-if(tg){tg.ready();tg.expand();if(tg.initDataUnsafe?.user?.first_name)document.getElementById("username").textContent=tg.initDataUnsafe.user.first_name;}
+
+if(window.Telegram?.WebApp){
+ Telegram.WebApp.ready();Telegram.WebApp.expand();
+ const user=Telegram.WebApp.initDataUnsafe?.user;
+ if(user?.first_name)document.getElementById("username").textContent=user.first_name;
+}
 
 function showPage(id,btn){
  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
- document.getElementById(id).classList.add("active");
+ document.getElementById(id)?.classList.add("active");
  document.querySelectorAll("nav button").forEach(b=>b.classList.remove("active"));
  if(btn)btn.classList.add("active");
- else document.querySelectorAll("nav button").forEach(b=>{if(b.textContent.includes(id==="home"?"Bosh":id==="deposit"?"Balans":id==="nft"?"NFT":id==="levels"?"Level":id==="invite"?"Taklif":"Profil"))b.classList.add("active")});
 }
-function showModal(title,body){document.getElementById("modalTitle").textContent=title;document.getElementById("modalBody").innerHTML=body;document.getElementById("modal").classList.add("show")}
+function showModal(title,body){
+ document.getElementById("modalTitle").textContent=title;
+ document.getElementById("modalBody").innerHTML=body;
+ document.getElementById("modal").classList.add("show");
+}
 function closeModal(){document.getElementById("modal").classList.remove("show")}
+
+const rewards=[
+ {icon:"💎",name:"Crystal kolleksiyasi"},
+ {icon:"🎨",name:"Art kolleksiyasi"},
+ {icon:"👑",name:"Royal kolleksiyasi"},
+ {icon:"⭐",name:"Star kolleksiyasi"},
+ {icon:"🎁",name:"Maxsus sovg‘a"}
+];
+
 function openCase(name){
- opens++;document.getElementById("openCount").textContent=opens;
- showModal("🎁 "+name,`<div class="case-art" style="font-size:55px">✨</div>
- <p>Bu faqat interfeys namoyishi. Bu yerda haqiqiy pul sarflanmaydi va sovrin berilmaydi.</p>
- <div class="item">💎 Raqamli kolleksiya</div><div class="item">⭐ Demo bonus</div><div class="item">🎁 Maxsus dizayn</div>
- <button style="width:100%;margin-top:12px" onclick="closeModal()">Yopish</button>`);
+ const btns=document.querySelectorAll(".case button");
+ btns.forEach(b=>b.disabled=true);
+ showModal("🎁 "+name,`
+  <div id="caseSpin" class="art" style="height:140px;font-size:65px;animation:glow 1s infinite">🎁</div>
+  <h3 id="caseResult" style="text-align:center">Case ochilmoqda...</h3>
+  <p style="text-align:center">Demo animatsiya</p>
+ `);
+ let ticks=0;
+ const spin=setInterval(()=>{
+  const r=rewards[Math.floor(Math.random()*rewards.length)];
+  const box=document.getElementById("caseSpin");
+  if(box)box.textContent=r.icon;
+  ticks++;
+  if(ticks>=14){
+   clearInterval(spin);
+   const reward=rewards[Math.floor(Math.random()*rewards.length)];
+   const icon=document.getElementById("caseSpin");
+   const result=document.getElementById("caseResult");
+   if(icon)icon.textContent=reward.icon;
+   if(result)result.textContent="🎉 "+reward.name;
+   const body=document.getElementById("modalBody");
+   if(body)body.insertAdjacentHTML("beforeend",'<p style="text-align:center">Demo sovrin ochildi. Haqiqiy TON yoki NFT berilmadi.</p><button style="width:100%" onclick="closeModal()">Yopish</button>');
+   btns.forEach(b=>b.disabled=false);
+  }
+ },120);
 }
 function openPromo(){
- showModal("🎟️ Promo Key",`<p>Demo promo kodini kiriting.</p><input id="promoCode" placeholder="Promo kod"><button style="width:100%" onclick="checkPromo()">Tekshirish</button><p id="promoResult"></p>`);
+ showModal("🎟️ Promo Key",'<p>Promo kodni kiriting.</p><input id="promoCode" placeholder="Promo kod"><button style="width:100%" onclick="checkPromo()">Tekshirish</button><p id="promoResult"></p>');
 }
 function checkPromo(){
- const val=document.getElementById("promoCode").value.trim();
- document.getElementById("promoResult").textContent=val?"Promo tekshiruvi uchun backend kerak. Kod hozircha qo‘llanilmadi.":"Avval promo kod kiriting.";
+ const v=document.getElementById("promoCode").value.trim();
+ document.getElementById("promoResult").textContent=v?"Promo kodni tekshirish uchun server kerak.":"Avval promo kod kiriting.";
 }
-function starsInfo(){
- showModal("⭐ Telegram Stars",`<p>Haqiqiy Stars to‘lovi Telegram Bot API orqali serverda yaratilgan invoice bilan bajarilishi kerak.</p><p>Bu statik sahifa to‘lov qabul qilmaydi, Stars sarflamaydi va balansni o‘zgartirmaydi.</p><button style="width:100%" onclick="closeModal()">Tushunarli</button>`);
-}
-async function copyAddress(){
- try{await navigator.clipboard.writeText(DEPOSIT_ADDRESS);showModal("TON manzil",`<p>Manzil nusxalandi, agar brauzer ruxsat bergan bo‘lsa.</p><div class="item">${DEPOSIT_ADDRESS}</div><button style="width:100%" onclick="closeModal()">Yopish</button>`)}
- catch(e){showModal("TON manzil",`<p>Manzilni nusxalash uchun ustiga bosib belgilang.</p><input value="${DEPOSIT_ADDRESS}" readonly>`)}
-}
-function copyInvite(){
- const input=document.getElementById("inviteLink");
- input.select();input.setSelectionRange(0,99999);
- try{document.execCommand("copy")}catch(e){}
- showModal("Taklif havolasi","<p>Havola tanlandi. Brauzerda nusxalash ruxsati berilgan bo‘lsa, uni ulashishingiz mumkin.</p><button style='width:100%' onclick='closeModal()'>Yopish</button>");
+
+let rocketTimer=null;
+function startRocket(){
+ const rocket=document.getElementById("rocketEmoji");
+ const mult=document.getElementById("rocketMultiplier");
+ const msg=document.getElementById("rocketMessage");
+ if(rocketTimer)clearInterval(rocketTimer);
+ let x=1;
+ rocket.style.transform="translateY(0)";
+ rocket.style.animation="glow 1s infinite";
+ mult.textContent="1.00x";
+ msg.textContent="🚀 Rocket uchmoqda!";
+ rocketTimer=setInterval(()=>{
+  x+=0.1;
+  mult.textContent=x.toFixed(2)+"x";
+  rocket.style.transform=`translateY(-${Math.min(x*7,130)}px) rotate(-8deg)`;
+  if(x>=5){
+   clearInterval(rocketTimer);rocketTimer=null;
+   rocket.style.transform="translateY(0)";
+   rocket.style.animation="none";
+   msg.textContent="✨ Demo yakunlandi!";
+  }
+ },150);
 }
 function renderLevels(){
- const mini=document.getElementById("miniLevels"),all=document.getElementById("allLevels");
- mini.innerHTML="";all.innerHTML="";
- const current=[...levels].reverse().find(l=>demoXP>=l.xp)||levels[0];
- levels.forEach(l=>{
-  const html=`<div class="level ${l.name===current.name?"current":""}"><span class="medal">${l.icon}</span><b>${l.name}</b><div class="small">${l.xp} XP</div></div>`;
-  mini.insertAdjacentHTML("beforeend",html);all.insertAdjacentHTML("beforeend",html);
- });
+ const current=[...levels].reverse().find(l=>demoTotalTon>=l.ton)||levels[0];
+ const next=levels.find(l=>l.ton>demoTotalTon);
+ const html=levels.map(l=>`<div class="level ${l.name===current.name?"current":""}"><span>${l.icon}</span><b>${l.name}</b><div class="muted">${l.ton} TON</div></div>`).join("");
+ document.getElementById("miniLevels").innerHTML=html;
+ document.getElementById("allLevels").innerHTML=html;
  document.getElementById("levelPill").textContent=current.icon+" "+current.name;
- document.getElementById("currentLevel").textContent=current.icon+" "+current.name;
  document.getElementById("profileLevel").textContent=current.name;
- document.getElementById("points").textContent=demoXP;
- document.getElementById("profileXP").textContent=demoXP;
- const next=levels.find(l=>l.xp>demoXP);
- const pct=next?Math.min(100,(demoXP-current.xp)/(next.xp-current.xp)*100):100;
- document.getElementById("progress").style.width=pct+"%";
- document.getElementById("nextLevel").textContent=next?`Keyingi daraja: ${next.name} — ${next.xp} XP`:"Eng yuqori daraja: Olmos";
+ document.getElementById("currentLevel").textContent=current.icon+" "+current.name;
+ document.getElementById("totalTon").textContent=demoTotalTon.toFixed(2);
+ document.getElementById("profileTon").textContent=demoTotalTon.toFixed(2);
+ const pct=next?Math.max(0,Math.min(100,(demoTotalTon-current.ton)/(next.ton-current.ton)*100)):100;
+ document.getElementById("homeProgress").style.width=pct+"%";
+ document.getElementById("profileProgress").style.width=pct+"%";
+ const t=next?`Keyingi level: ${next.name} — ${next.ton} TON`:"Eng yuqori level: Olmos";
+ document.getElementById("homeNext").textContent=t;
+ document.getElementById("nextLevel").textContent=t;
 }
+async function copyAddress(){
+ try{
+  await navigator.clipboard.writeText(DEPOSIT_ADDRESS);
+  showModal("TON manzil","<p>Manzil nusxalandi.</p><button style='width:100%' onclick='closeModal()'>Yopish</button>");
+ }catch(e){
+  showModal("TON manzil",`<p>Manzilni belgilang va nusxalang.</p><input value="${DEPOSIT_ADDRESS}" readonly>`);
+ }
+}
+function starsInfo(){
+ showModal("⭐ Telegram Stars",'<p>Haqiqiy Stars to‘lovi uchun Telegram Bot API invoice va server tasdig‘i zarur. Ushbu demo to‘lov qabul qilmaydi.</p><button style="width:100%" onclick="closeModal()">Tushunarli</button>');
+}
+function copyInvite(){
+ const i=document.getElementById("inviteLink");i.select();i.setSelectionRange(0,99999);
+ try{document.execCommand("copy")}catch(e){}
+ showModal("Taklif havolasi","<p>Havola tanlandi. Nusxalab ulashing.</p><button style='width:100%' onclick='closeModal()'>Yopish</button>");
+}
+
 document.getElementById("nftGrid").innerHTML=[
  ["💎","Crystal"],["🎨","Art"],["🌌","Galaxy"],["👑","Royal"]
-].map(([icon,name])=>`<div class="card" style="margin:0;text-align:center"><div class="case-art">${icon}</div><b>${name}</b><p>Katalog namunasi</p></div>`).join("");
+].map(([i,n])=>`<div class="case"><div class="art">${i}</div><h3>${n}</h3><span class="pill">Katalog</span></div>`).join("");
 document.getElementById("inviteLink").value=location.origin+location.pathname+"?ref=demo";
 renderLevels();
 
 try{
  if(window.TON_CONNECT_UI?.TonConnectUI){
-  const tonUI=new TON_CONNECT_UI.TonConnectUI({manifestUrl:MANIFEST_URL,buttonRootId:"ton-connect"});
+  new TON_CONNECT_UI.TonConnectUI({manifestUrl:MANIFEST_URL,buttonRootId:"ton-connect"});
  }else{
-  document.getElementById("ton-connect").innerHTML="<p>TON Connect yuklanmadi. Sahifani qayta ochib ko‘ring.</p>";
+  document.getElementById("ton-connect").innerHTML="<p>TON Connect yuklanmadi. Sahifani yangilang.</p>";
  }
 }catch(e){
- document.getElementById("ton-connect").innerHTML="<p>TON Connect sozlamasi uchun manifest va internet ulanishini tekshiring.</p>";
+ document.getElementById("ton-connect").innerHTML="<p>TON Connect manifest sozlamalarini tekshiring.</p>";
 }
 </script>
 </body>
