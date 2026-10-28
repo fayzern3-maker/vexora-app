@@ -2,122 +2,147 @@
 <!DOCTYPE html>
 <html lang="uz">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>VEXORA</title>
-  <script src="https://telegram.org/js/telegram-web-app.js"></script>
-  <style>
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      padding: 24px 16px;
-      font-family: Arial, sans-serif;
-      background: #0b0b14;
-      color: white;
-    }
-    header {
-      text-align: center;
-      color: #a78bfa;
-      font-size: 32px;
-      font-weight: 800;
-      padding: 20px;
-      letter-spacing: 3px;
-    }
-    .balance {
-      background: #19182b;
-      border: 1px solid #493778;
-      border-radius: 18px;
-      padding: 22px;
-      text-align: center;
-      margin: 12px 0 24px;
-    }
-    .amount { font-size: 30px; font-weight: bold; margin-top: 10px; }
-    .grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-    }
-    .card {
-      background: #191927;
-      border: 1px solid #303044;
-      border-radius: 18px;
-      padding: 22px 10px;
-      text-align: center;
-    }
-    .emoji { font-size: 34px; }
-    .card h3 { font-size: 17px; }
-    button {
-      width: 100%;
-      padding: 12px;
-      border: 0;
-      border-radius: 10px;
-      background: #8b5cf6;
-      color: white;
-      font-weight: bold;
-    }
-    #message { color: #c4b5fd; text-align: center; margin-top: 22px; }
-    footer { text-align: center; color: #777; margin-top: 30px; font-size: 12px; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#090711">
+<title>VEXORA</title>
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;background:#090711;color:white;
+ font-family:Arial,sans-serif;padding:22px 16px;
+ min-height:100vh
+}
+.app{max-width:440px;margin:auto}
+header{display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:27px;font-weight:900;letter-spacing:3px}
+.logo span{color:#a879ff}
+.tag{color:#b8a2e9;font-size:11px;letter-spacing:2px;margin-top:5px}
+.profile{background:#191327;border:1px solid #382650;
+ border-radius:14px;padding:11px;color:#d8c6ff}
+h1{font-size:34px;line-height:1.1;margin:32px 0 10px}
+h1 span{color:#ac79ff}
+.sub{color:#a7a1b8;font-size:14px;line-height:1.6}
+.balance{margin-top:24px;padding:22px;border-radius:22px;
+ background:linear-gradient(135deg,#241442,#111020 75%);
+ border:1px solid #65409b;box-shadow:0 10px 40px #6b26a51c}
+.small{color:#b9a6d8;font-size:12px}
+.amount{font-size:34px;font-weight:800;margin:10px 0}
+.amount small{font-size:14px;color:#b9a6d8}
+.pill{display:inline-block;background:#302044;color:#d7baff;
+ padding:7px 11px;border-radius:20px;font-size:11px}
+.section{margin-top:30px;font-size:18px;font-weight:bold}
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:15px}
+.card{padding:19px 15px;background:#14111f;border:1px solid #292138;
+ border-radius:19px;min-height:145px}
+.symbol{font-size:29px;margin-bottom:14px}
+.card h3{margin:0 0 7px;font-size:16px}
+.card p{margin:0;color:#a7a1b8;font-size:12px;line-height:1.5}
+button{font:inherit;cursor:pointer}
+.open{width:100%;margin-top:14px;padding:13px;border:0;border-radius:12px;
+ background:linear-gradient(90deg,#8548ed,#b06cff);color:white;font-weight:bold}
+.wide{margin-top:20px;padding:17px;border-radius:17px;
+ border:1px solid #292138;background:#14111f;color:white;width:100%;
+ text-align:left}
+.wide span{float:right;color:#ae83ff}
+nav{position:sticky;bottom:8px;margin-top:26px;display:flex;gap:5px;
+ padding:9px;background:#15111f;border:1px solid #30233f;
+ border-radius:18px;justify-content:space-around}
+nav button{border:0;background:transparent;color:#a9a1bb;
+ padding:10px 7px;border-radius:12px;font-size:11px}
+nav button.active{background:#33204f;color:#d5b8ff}
+#message{margin-top:15px;color:#d7baff;font-size:13px;line-height:1.6;
+ text-align:center;min-height:20px}
+footer{text-align:center;color:#696279;font-size:11px;margin:22px 0}
+</style>
 </head>
 <body>
-  <header>VEXORA</header>
+<div class="app">
+<header>
+ <div>
+  <div class="logo">VE<span>X</span>ORA</div>
+  <div class="tag">DIGITAL PLAYGROUND</div>
+ </div>
+ <div class="profile">✦ PLAYER</div>
+</header>
 
-  <section class="balance">
-    <div>⭐ DEMO BALANCE</div>
-    <div class="amount"><span id="balance">1000</span> pts</div>
-    <small>Sinov ballari — haqiqiy pul emas</small>
-  </section>
+<h1>Enter the<br><span>VEXORA world.</span></h1>
+<div class="sub">O‘yna, kashf et va o‘z virtual kolleksiyangni yarat.</div>
 
-  <main class="grid">
-    <section class="card">
-      <div class="emoji">🎁</div>
-      <h3>Cases</h3>
-      <button onclick="openCase()">Open</button>
-    </section>
-    <section class="card">
-      <div class="emoji">🚀</div>
-      <h3>Rocket</h3>
-      <button onclick="showMessage('Rocket demo tez orada!')">Play</button>
-    </section>
-    <section class="card">
-      <div class="emoji">⬆️</div>
-      <h3>Upgrade</h3>
-      <button onclick="showMessage('Upgrade demo tez orada!')">Start</button>
-    </section>
-    <section class="card">
-      <div class="emoji">👤</div>
-      <h3>Profile</h3>
-      <button onclick="showMessage('VEXORA profilingiz')">View</button>
-    </section>
-  </main>
+<div class="balance">
+ <div class="small">SENING DEMO BALANSING</div>
+ <div class="amount"><span id="balance">1000</span> <small>PTS</small></div>
+ <span class="pill">✦ Virtual ochkolar</span>
+</div>
 
-  <div id="message">VEXORA demo versiyasiga xush kelibsiz!</div>
-  <footer>VEXORA • DEMO VERSION</footer>
+<div class="section">✦ O‘yinlar</div>
+<div class="cards">
+ <div class="card">
+  <div class="symbol">🎁</div>
+  <h3>Cases</h3>
+  <p>Virtual sandiqni och va buyumni kashf et.</p>
+  <button class="open" onclick="openCase()">Ochish · 100 PTS</button>
+ </div>
+ <div class="card">
+  <div class="symbol">🚀</div>
+  <h3>Rocket</h3>
+  <p>Uchirish animatsiyasini sinab ko‘r.</p>
+  <button class="open" onclick="rocket()">Boshlash</button>
+ </div>
+ <div class="card">
+  <div class="symbol">⚡</div>
+  <h3>Upgrade</h3>
+  <p>Virtual kolleksiyangni rivojlantir.</p>
+  <button class="open" onclick="upgrade()">Ko‘rish</button>
+ </div>
+ <div class="card">
+  <div class="symbol">👤</div>
+  <h3>Profile</h3>
+  <p>O‘yinchi ma’lumotlaring.</p>
+  <button class="open" onclick="profile()">Ochish</button>
+ </div>
+</div>
 
-  <script>
-    let balance = 1000;
+<button class="wide" onclick="daily()">🎁 Kunlik bonus <span>+50 PTS</span></button>
+<div id="message" aria-live="polite">VEXORA’ga xush kelibsan!</div>
 
-    if (window.Telegram && window.Telegram.WebApp) {
-      window.Telegram.WebApp.ready();
-      window.Telegram.WebApp.expand();
-    }
-
-    function showMessage(text) {
-      document.getElementById('message').textContent = text;
-    }
-
-    function openCase() {
-      const cost = 100;
-      if (balance < cost) {
-        showMessage('Ballar yetarli emas!');
-        return;
-      }
-      balance -= cost;
-      document.getElementById('balance').textContent = balance;
-      const prizes = ['Oddiy item', 'Rare item', 'Epic item'];
-      const prize = prizes[Math.floor(Math.random() * prizes.length)];
-      showMessage('Demo case ochildi! Yutug‘ingiz: ' + prize);
-    }
-  </script>
+<nav>
+ <button class="active" onclick="home(this)">⌂<br>Home</button>
+ <button onclick="go('Cases',this)">🎁<br>Cases</button>
+ <button onclick="go('Rocket',this)">🚀<br>Rocket</button>
+ <button onclick="go('Profile',this)">👤<br>Profile</button>
+</nav>
+<footer>VEXORA © 2026 · DEMO VERSION</footer>
+</div>
+<script>
+let balance=1000;
+let gotBonus=false;
+function say(text){document.getElementById('message').textContent=text}
+function update(){document.getElementById('balance').textContent=balance}
+function openCase(){
+ if(balance<100){say('Ochko yetarli emas. Kunlik bonusni tekshir!');return}
+ balance-=100;update();
+ const items=['💎 Binafsha kristall','👑 Virtual toj','✨ Neon yulduz','🛡️ Sirli qalqon'];
+ say('Senga tushdi: '+items[Math.floor(Math.random()*items.length)]+' · Demo buyum');
+}
+function rocket(){say('🚀 Rocket uchirildi! Bu virtual demo — natija faqat ko‘ngilochar.')}
+function upgrade(){say('⚡ Upgrade bo‘limi: yangi imkoniyatlar tez orada!')}
+function profile(){say('👤 VEXORA o‘yinchisi · '+balance+' virtual PTS')}
+function daily(){
+ if(gotBonus){say('Kunlik bonusni olding. Ertaga yana urinib ko‘r!');return}
+ gotBonus=true;balance+=50;update();say('🎁 Bonus olindi: +50 virtual PTS!')
+}
+function go(name,btn){
+ document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
+ btn.classList.add('active');
+ if(name==='Cases')openCase();
+ else if(name==='Rocket')rocket();
+ else profile();
+}
+function home(btn){
+ document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
+ btn.classList.add('active');say('VEXORA bosh sahifasidasan!')
+}
+</script>
 </body>
-  </html>
+</html>
