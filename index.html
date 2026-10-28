@@ -1,226 +1,422 @@
-
 <!DOCTYPE html>
 <html lang="uz">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#0b0918">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>VEXORA</title>
+
 <style>
-*{box-sizing:border-box}
-body{margin:0;background:#0b0918;color:#f6f3ff;font-family:system-ui,sans-serif}
-header{max-width:720px;margin:auto;padding:15px 16px;display:flex;align-items:center;justify-content:space-between;gap:10px}
-.logo{font-size:23px;font-weight:900;letter-spacing:3px;white-space:nowrap}
-.logo span{color:#9c78ff}
-.top-actions{display:flex;align-items:center;gap:7px}
-.mini-balance{background:#17142a;border:1px solid #30294e;border-radius:12px;padding:8px 10px;min-width:95px}
-.mini-balance small{display:block;color:#aaa5c8;font-size:10px}
-.mini-balance strong{font-size:14px}
-button{font:inherit;cursor:pointer}
-.deposit-top{border:0;border-radius:12px;padding:11px 12px;background:#8c6bff;color:white;font-weight:750;font-size:13px}
-main{max-width:720px;margin:auto;padding:10px 16px 95px}
-h1{font-size:27px}h2{font-size:19px}p{line-height:1.5}
-.muted{color:#a5a0bd;font-size:13px}
-.panel{padding:18px;background:#17142a;border:1px solid #30294e;border-radius:19px;margin:16px 0}
-.row{display:flex;align-items:center;gap:13px}
-.ton-icon{width:52px;height:52px;border-radius:16px;background:#168fe0;display:grid;place-items:center;font-size:25px;font-weight:900}
-.balance{font-size:29px;font-weight:800;margin-top:22px;overflow-wrap:anywhere}
-.status{font-size:12px;color:#aaa5c8;margin-top:10px;overflow-wrap:anywhere}
-.primary{display:block;width:100%;margin-top:14px;border:0;border-radius:12px;padding:13px;background:#8c6bff;color:white;font-weight:750}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.tile{padding:17px;text-align:left;color:white;background:#17142a;border:1px solid #30294e;border-radius:16px}
-.tile strong{display:block;margin:8px 0}
-.notice{margin-top:15px;padding:13px;border-radius:12px;background:#201b34;color:#c4bfdc;font-size:12px;line-height:1.6}
-.page{display:none}.page.active{display:block}
-nav{position:fixed;bottom:0;left:0;right:0;display:flex;justify-content:center;background:#100e20;border-top:1px solid #30294e;padding:8px;z-index:2}
-nav button{flex:1;max-width:160px;padding:11px 2px;border:0;border-radius:9px;background:none;color:#a5a0bd;font-size:12px}
-nav button.active{background:#2a2147;color:white}
-.modal-backdrop{display:none;position:fixed;inset:0;background:#000a;z-index:5;align-items:flex-end;justify-content:center;padding:12px}
-.modal-backdrop.open{display:flex}
-.modal{width:100%;max-width:480px;background:#17142a;border:1px solid #393052;border-radius:22px;padding:20px;margin-bottom:10px}
-.modal-head{display:flex;justify-content:space-between;align-items:center}
-.close{border:0;border-radius:9px;padding:7px 11px;background:#30294e;color:white}
-.pay-option{width:100%;display:flex;align-items:center;gap:13px;text-align:left;margin-top:12px;padding:15px;background:#201b34;color:white;border:1px solid #393052;border-radius:14px}
-.pay-option .symbol{font-size:26px}
-.pay-option strong,.pay-option small{display:block}
-.pay-option small{color:#aaa5c8;font-size:12px;margin-top:3px}
-@media(max-width:380px){.logo{font-size:19px;letter-spacing:2px}.mini-balance{min-width:80px;padding:7px}.deposit-top{padding:10px 8px;font-size:12px}.grid{grid-template-columns:1fr}}
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #171719;
+  color: white;
+  font-family: Arial, sans-serif;
+  padding-bottom: 90px;
+}
+
+header {
+  background: #222225;
+  padding: 18px 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #444;
+}
+
+.logo {
+  font-size: 23px;
+  font-weight: bold;
+}
+
+.logo span {
+  color: #9877ff;
+}
+
+button {
+  border: 0;
+  border-radius: 18px;
+  background: #8769df;
+  color: white;
+  padding: 11px 15px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+main {
+  padding: 14px;
+}
+
+.balance {
+  color: #b7a0ff;
+  font-size: 13px;
+}
+
+.banner {
+  height: 125px;
+  border-radius: 22px;
+  margin: 14px 0;
+  padding: 17px;
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.rocket {
+  background: linear-gradient(120deg, #7ec9ff, #3977db);
+}
+
+.upgrade {
+  background: linear-gradient(120deg, #ffbd20, #ff7515);
+}
+
+.play {
+  background: linear-gradient(120deg, #5411a8, #8d40ef);
+}
+
+.banner span {
+  font-size: 48px;
+}
+
+h2 {
+  font-size: 20px;
+  margin-top: 24px;
+}
+
+.cases {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.case {
+  background: #29292c;
+  border: 2px solid #8b6de9;
+  border-radius: 27px;
+  overflow: hidden;
+}
+
+.case.gold {
+  border-color: #edc329;
+}
+
+.case.green {
+  border-color: #19b982;
+}
+
+.art {
+  height: 155px;
+  background: radial-gradient(circle, #48404e, #19191b);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.art strong {
+  font-size: 25px;
+  color: #d5ffb8;
+}
+
+.gift {
+  font-size: 60px;
+  margin-top: 8px;
+}
+
+.case-bottom {
+  padding: 12px 9px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 5px;
+}
+
+.case-bottom button {
+  padding: 10px;
+}
+
+.nfts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.nft {
+  border-radius: 16px;
+  background: #29292c;
+  overflow: hidden;
+  text-align: center;
+  padding-bottom: 13px;
+}
+
+.nft-image {
+  height: 120px;
+  display: grid;
+  place-items: center;
+  font-size: 60px;
+  background: linear-gradient(140deg, #39296b, #15151b);
+}
+
+.nft p {
+  color: #b9a5ff;
+  font-weight: bold;
+}
+
+.page {
+  display: none;
+}
+
+.page.active {
+  display: block;
+}
+
+.notice {
+  color: #c5bfd2;
+  font-size: 12px;
+  line-height: 1.5;
+  background: #242128;
+  border-radius: 12px;
+  padding: 12px;
+  margin-top: 14px;
+}
+
+nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #222225;
+  border-top: 1px solid #444;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  padding: 9px 2px;
+}
+
+nav button {
+  background: transparent;
+  color: #aaa;
+  padding: 9px 1px;
+  font-size: 11px;
+}
+
+nav button.active {
+  background: #8769df;
+  color: white;
+}
+
+nav span {
+  display: block;
+  font-size: 21px;
+  margin-bottom: 5px;
+}
 </style>
 </head>
+
 <body>
+
 <header>
-  <div class="logo">VE<span>X</span>ORA</div>
-  <div class="top-actions">
-    <div class="mini-balance">
-      <small>BOT BALANSI</small>
-      <strong id="bot-balance">Tekshirilmagan</strong>
-    </div>
-    <button class="deposit-top" id="open-deposit">＋ Depozit</button>
+  <div>
+    <div class="logo">VE<span>X</span>ORA</div>
+    <div class="balance">💎 Bot balansi: serverga ulanmagan</div>
   </div>
+  <button onclick="deposit()">＋ Depozit</button>
 </header>
 
 <main>
+
 <section class="page active" id="home">
-<h1>Raqamli aktivlaring</h1>
-<p class="muted">TON Wallet va kolleksiyalar uchun boshqaruv paneli.</p>
 
-<div class="panel">
- <div class="row">
-  <div class="ton-icon">T</div>
-  <div><h2 style="margin:0">TON Wallet</h2>
-  <div class="muted">TON Mainnet</div></div>
- </div>
- <div id="balance" class="balance">— TON</div>
- <div id="balance-status" class="status">Hamyon ulanmagan. Balans olinmadi.</div>
- <div id="ton-connect" style="margin-top:16px"></div>
- <button class="primary" id="refresh" disabled>Balansni yangilash</button>
- <div id="wallet-status" class="status">Hamyon ulanmagan.</div>
- <div id="wallet-address" class="status"></div>
-</div>
+  <div class="banner rocket" onclick="openPage('game')">
+    ROCKET <span>🚀</span>
+  </div>
 
-<div class="grid">
- <button class="tile" onclick="showPage('gifts')">
-  <span style="font-size:28px">🎁</span><strong>Telegram Gifts</strong>
-  <span class="muted">Sovg‘alar kolleksiyasi</span>
- </button>
- <button class="tile" onclick="showPage('nfts')">
-  <span style="font-size:28px">🖼️</span><strong>NFT Collection</strong>
-  <span class="muted">Raqamli kolleksiya</span>
- </button>
-</div>
-<div class="notice">Bot balansi va TON hamyon balansi alohida hisoblanadi. Bot balansi backend ulanmaguncha mavjud emas. Seed phrase yoki maxfiy kalitni hech qachon kiritmang.</div>
+  <div class="banner upgrade" onclick="openPage('inventory')">
+    NFT UPGRADE <span>💎</span>
+  </div>
+
+  <div class="banner play" onclick="openPage('inventory')">
+    PLAY HUB <span>🎁</span>
+  </div>
+
+  <h2>🎁 Keyslar</h2>
+
+  <div class="cases">
+
+    <div class="case gold">
+      <div class="art">
+        <strong>FREE 24</strong>
+        <div class="gift">💍</div>
+      </div>
+      <div class="case-bottom">
+        <b>Free 24h</b>
+        <button onclick="freeCase()">🎁 FREE</button>
+      </div>
+    </div>
+
+    <div class="case">
+      <div class="art">
+        <strong>FREE</strong>
+        <div class="gift">🐱</div>
+      </div>
+      <div class="case-bottom">
+        <b>Promo</b>
+        <button onclick="openPage('promo')">PROMO</button>
+      </div>
+    </div>
+
+    <div class="case green">
+      <div class="art">
+        <strong>FARM</strong>
+        <div class="gift">🐸</div>
+      </div>
+      <div class="case-bottom">
+        <b>Farm</b>
+        <button onclick="openPage('inventory')">NFT</button>
+      </div>
+    </div>
+
+    <div class="case">
+      <div class="art">
+        <strong>LIMITED</strong>
+        <div class="gift">🧢</div>
+      </div>
+      <div class="case-bottom">
+        <b>Autumn</b>
+        <button onclick="openPage('inventory')">NFT</button>
+      </div>
+    </div>
+
+  </div>
+
+  <h2>💎 NFT kolleksiyasi</h2>
+
+  <div class="nfts">
+    <div class="nft">
+      <div class="nft-image">💠</div>
+      <b>Pixel Gem</b>
+      <p>0.01 TON</p>
+    </div>
+
+    <div class="nft">
+      <div class="nft-image">🐱</div>
+      <b>Moon Cat</b>
+      <p>0.05 TON</p>
+    </div>
+
+    <div class="nft">
+      <div class="nft-image">👑</div>
+      <b>Solar Crown</b>
+      <p>12 TON</p>
+    </div>
+
+    <div class="nft">
+      <div class="nft-image">🦊</div>
+      <b>Crystal Fox</b>
+      <p>25 TON</p>
+    </div>
+  </div>
+
+  <div class="notice">
+    Rasmlar hozircha namuna. Haqiqiy NFT rasmlarini ko‘rsatish uchun
+    ularning rasm fayllarini ulash kerak.
+  </div>
+
 </section>
 
-<section class="page" id="gifts">
-<h1>Telegram Gifts</h1>
-<div class="panel"><h2>Mening sovg‘alarim</h2>
-<p class="muted">Sovg‘alarni aniqlash integratsiyasi hali ulanmagan.</p></div>
+<section class="page" id="inventory">
+  <h2>🎒 Inventar</h2>
+  <p>NFT va Telegram Gifts shu yerda ko‘rinadi.</p>
+  <p>Haqiqiy inventar server orqali tekshirilishi kerak.</p>
 </section>
 
-<section class="page" id="nfts">
-<h1>NFT Collection</h1>
-<div class="panel"><h2>Mening NFT’larim</h2>
-<p class="muted">NFT egaligini tekshirish manbasi hali ulanmagan.</p></div>
+<section class="page" id="invite">
+  <h2>👥 Invite</h2>
+  <p>Do‘stlaringni taklif qil.</p>
+  <button onclick="alert('Taklif havolasi backend ulangandan keyin yaratiladi.')">
+    Havolani olish
+  </button>
+  <div class="notice">
+    Referral mukofoti faqat tasdiqlangan depozitlar asosida serverda hisoblanadi.
+  </div>
 </section>
+
+<section class="page" id="game">
+  <h2>🚀 Rocket</h2>
+  <p>Rocket o‘yini uchun sahifa.</p>
+  <button onclick="openPage('home')">Orqaga</button>
+</section>
+
+<section class="page" id="ranking">
+  <h2>🏆 Reyting</h2>
+  <p>Reyting serverdagi tasdiqlangan balanslar bilan to‘ldiriladi.</p>
+</section>
+
+<section class="page" id="tickets">
+  <h2>🎟️ Tickets</h2>
+  <p>Ticketlar serverdan yuklanadi.</p>
+</section>
+
+<section class="page" id="promo">
+  <h2>🏷️ Promo Case</h2>
+  <p>Promo kodni kiriting.</p>
+  <input id="promoCode" placeholder="PROMO KOD"
+    style="width:100%;padding:13px;border-radius:12px">
+  <br><br>
+  <button onclick="checkPromo()">Tekshirish</button>
+  <p id="promoStatus"></p>
+  <div class="notice">
+    Promo 24 soat ichida ishlatilishi va 5 TON depozit tasdiqlanishi
+    kabi shartlar backendda tekshirilishi kerak. 4 TON NFT mukofoti
+    faqat server tasdiqlagandan so‘ng beriladi.
+  </div>
+</section>
+
 </main>
 
 <nav>
- <button class="active" data-page="home" onclick="showPage('home')">⌂ Home</button>
- <button data-page="gifts" onclick="showPage('gifts')">🎁 Gifts</button>
- <button data-page="nfts" onclick="showPage('nfts')">▧ NFTs</button>
+  <button onclick="openPage('inventory')"><span>🎒</span>Inventar</button>
+  <button onclick="openPage('invite')"><span>👥</span>Invite</button>
+  <button class="active" onclick="openPage('home')"><span>⌂</span>Home</button>
+  <button onclick="openPage('ranking')"><span>🏆</span>Reyting</button>
+  <button onclick="openPage('tickets')"><span>🎟️</span>Tickets</button>
 </nav>
 
-<div class="modal-backdrop" id="deposit-modal" role="dialog" aria-modal="true" aria-labelledby="deposit-title">
- <div class="modal">
-  <div class="modal-head">
-   <h2 id="deposit-title" style="margin:0">Balansni to‘ldirish</h2>
-   <button class="close" id="close-deposit">✕</button>
-  </div>
-  <p class="muted">To‘lov usulini tanlang.</p>
-  <button class="pay-option" id="choose-ton">
-   <span class="symbol">💎</span>
-   <span><strong>TON orqali</strong><small>TON hamyoniga to‘lov</small></span>
-  </button>
-  <button class="pay-option" id="choose-stars">
-   <span class="symbol">⭐</span>
-   <span><strong>Telegram Stars</strong><small>Telegram bot orqali to‘lov</small></span>
-  </button>
-  <div class="notice" id="payment-message">To‘lovlar backend orqali tasdiqlanadi. Tasdiqlanmagan to‘lov bot balansiga qo‘shilmaydi.</div>
- </div>
-</div>
-
 <script>
-function showPage(id){
- document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id===id));
- document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===id));
+function openPage(id) {
+  document.querySelectorAll('.page').forEach(page => {
+    page.classList.remove('active');
+  });
+
+  document.getElementById(id).classList.add('active');
+
+  document.querySelectorAll('nav button').forEach(button => {
+    button.classList.remove('active');
+  });
+
+  window.scrollTo(0, 0);
 }
-const $=id=>document.getElementById(id);
 
-$('open-deposit').onclick=()=> $('deposit-modal').classList.add('open');
-$('close-deposit').onclick=()=> $('deposit-modal').classList.remove('open');
-$('deposit-modal').addEventListener('click',e=>{
- if(e.target===$('deposit-modal')) $('deposit-modal').classList.remove('open');
-});
-
-const depositAddress='UQBGBtNxXKb929DYB2mP6x4WoiD6ThYxcO_7IT7EJdaIsiXF';
-
-$('choose-ton').onclick=()=>{
- $('payment-message').textContent='TON qabul qiluvchi manzil: '+depositAddress+'. Hamyon ilovasida manzilni tekshirib, to‘lovni o‘zing tasdiqla. Bot balansi server tranzaksiyani tekshirgandan keyingina yangilanadi.';
- const url='https://app.tonkeeper.com/transfer/'+depositAddress;
- window.open(url,'_blank','noopener');
-};
-
-$('choose-stars').onclick=()=>{
- $('payment-message').textContent='Stars to‘lovi uchun bot backendida Telegram XTR invoice yaratilishi kerak. Backend ulanmagani sababli bu tugma hozircha to‘lov olmaydi.';
-};
-
-let address=null,requesting=false;
-
-async function fetchBalance(){
- if(!address||requesting)return;
- requesting=true;
- $('refresh').disabled=true;
- $('balance').textContent='Yuklanmoqda…';
- $('balance-status').textContent='TON Mainnet balansi tekshirilmoqda.';
- try{
-  const r=await fetch('https://toncenter.com/api/v2/getAddressBalance?address='+encodeURIComponent(address));
-  if(!r.ok)throw Error('HTTP '+r.status);
-  const d=await r.json();
-  if(d.ok!==true||d.result==null)throw Error('Balans olinmadi');
-  const n=BigInt(d.result),whole=n/1000000000n;
-  const frac=(n%1000000000n).toString().padStart(9,'0');
-  const amount=(whole.toString()+'.'+frac).replace(/\.?0+$/,'');
-  $('balance').textContent=amount+' TON';
-  $('balance-status').textContent='TON Mainnet ma’lumoti olindi · '+new Date().toLocaleTimeString();
- }catch(e){
-  $('balance').textContent='— TON';
-  $('balance-status').textContent='Balans olinmadi. Internet yoki API xizmatini tekshiring.';
- }finally{
-  requesting=false;
-  $('refresh').disabled=!address;
- }
+function deposit() {
+  alert('Depozit uchun TON Connect va xavfsiz backend ulanishi kerak.');
 }
-$('refresh').addEventListener('click',fetchBalance);
 
-function initTonConnect(){
- const s=document.createElement('script');
- s.src='https://unpkg.com/@tonconnect/ui@latest/dist/tonconnect-ui.min.js';
- s.async=true;
- s.onload=()=>{
-  if(!window.TON_CONNECT_UI){
-   $('wallet-status').textContent='TON Connect kutubxonasi yuklanmadi.';
-   return;
-  }
-  try{
-   const ui=new window.TON_CONNECT_UI.TonConnectUI({
-    manifestUrl:'https://fayzern3-maker.github.io/vexora-app/tonconnect-manifest.json',
-    buttonRootId:'ton-connect',
-    actionsConfiguration:{twaReturnUrl:'https://t.me/'}
-   });
-   ui.onStatusChange(wallet=>{
-    if(wallet&&wallet.account&&wallet.account.address){
-     address=wallet.account.address;
-     $('wallet-status').textContent='Hamyon ulandi.';
-     $('wallet-address').textContent='Manzil: '+address;
-     $('refresh').disabled=false;
-     fetchBalance();
-    }else{
-     address=null;
-     $('balance').textContent='— TON';
-     $('balance-status').textContent='Balans olinmadi.';
-     $('wallet-status').textContent='Hamyon ulanmagan.';
-     $('wallet-address').textContent='';
-     $('refresh').disabled=true;
-    }
-   });
-  }catch(e){$('wallet-status').textContent='TON Connect sozlamalarini tekshiring.';}
- };
- s.onerror=()=> $('wallet-status').textContent='TON Connect yuklanmadi. Internetni tekshiring.';
- document.head.appendChild(s);
+function freeCase() {
+  alert('Free Case: 0.01 TON yoki 0.05 TON qiymatli NFT variantlari. Haqiqiy mukofot olish uchun server va 24 soatlik limit tekshiruvi kerak.');
 }
-initTonConnect();
+
+function checkPromo() {
+  const code = document.getElementById('promoCode').value.trim();
+
+  document.getElementById('promoStatus').textContent = code
+    ? 'Promo kod serverda tekshirilishi kerak. Hozircha mukofot berilmadi.'
+    : 'Avval promo kod kiriting.';
+}
 </script>
-</body>
-                                 </html>
 
-   
+</body>
+  </html>
